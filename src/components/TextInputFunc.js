@@ -1,21 +1,53 @@
 import React from 'react';
-import {TextInput, StyleSheet} from 'react-native';
+import {TextInput, StyleSheet, View, Text} from 'react-native';
 export default function TextInputFunc(props) {
-  const {placehold} = props;
-  console.warn('props');
+  const {placeholder, alignment, text, textType} = props;
   //   const {text, onButtonPress} = props;
   return (
-    <TextInput
-      style={{
-        height: 30,
-        width: '50%',
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginTop: 20,
-        alignSelf: 'center',
-        borderRadius:10,
-      }}
-      placeholder={placehold}
-    />
+    <View>
+      <Text
+        style={
+        
+          textType === 'small'
+            ? styles.smallText
+            : textType === 'large'
+            ? styles.largeText
+            : styles.mediumtext
+        }>
+        {text}
+      </Text>
+      <TextInput style={styles.textInput} placeholder={placeholder} />
+    </View>
   );
 }
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginTop: 100,
+    alignItems: 'center',
+  },
+  smalltext: {
+    marginTop: 20,
+    color: 'slategrey',
+    alignSelf: 'center',
+  },
+  view: {
+    flex: 1,
+    backgroundColor: 'linen',
+  },
+  mediumtext: {
+    marginTop: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  textInput: {
+    height: 30,
+    width: '100%',
+    borderColor: 'gray',
+    borderBottomWidth: 1,
+    marginTop: 10,
+    // alignSelf: alignment ? alignment : 'flex-start',
+  },
+});

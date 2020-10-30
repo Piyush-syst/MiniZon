@@ -1,0 +1,35 @@
+[
+
+    {
+
+        "id": 1,
+
+        "name": "Lesson 1",
+
+        "topics": [
+
+            {
+
+                "topicID": 1,
+
+                "topicName": "Science",
+
+                "topicDescription": "Science quiz questions"
+
+            },
+
+            {
+
+                "topicID": 2,
+
+                "topicName": "General Knowledge",
+
+                "topicDescription": "General Knowledge Quiz Questions"
+
+            }
+
+        ]
+
+    }
+
+]

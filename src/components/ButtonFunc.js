@@ -1,8 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 export default function ButtonFunc(props) {
-  console.warn('props', props);
-  const {text, onButtonPress, wid} = props;
+  const {text, onButtonPress, wid, fontsize} = props;
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -19,7 +18,8 @@ export default function ButtonFunc(props) {
       onPress={() => {
         onButtonPress();
       }}>
-      <Text>{text ? text : 'Button'}</Text>
+      <Text 
+      style={{fontSize:fontsize}}>{text ? text : 'Button'}</Text>
     </TouchableOpacity>
   );
 }
