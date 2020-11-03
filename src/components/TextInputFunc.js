@@ -1,13 +1,12 @@
 import React from 'react';
 import {TextInput, StyleSheet, View, Text} from 'react-native';
 export default function TextInputFunc(props) {
-  const {placeholder, alignment, text, textType} = props;
+  const {placeholder, alignment, text, textType, onChange, value} = props;
   //   const {text, onButtonPress} = props;
   return (
     <View>
       <Text
         style={
-        
           textType === 'small'
             ? styles.smallText
             : textType === 'large'
@@ -16,7 +15,14 @@ export default function TextInputFunc(props) {
         }>
         {text}
       </Text>
-      <TextInput style={styles.textInput} placeholder={placeholder} />
+      <TextInput
+        style={styles.textInput}
+        placeholder={placeholder}
+        onChangeText={(changedText) => {
+          onChange(changedText);
+        }}
+        value={value}
+      />
     </View>
   );
 }

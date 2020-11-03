@@ -42,6 +42,12 @@ class MensWear extends Component {
             )}
             keyExtractor={(item, index) => index}
           />
+          <ButtonFunc
+            text={CONST.BUTTON_TEXT_PROCEEDTOPAY}
+            wid="70%"
+            fontsize={14}
+            onButtonPress={() => {}}
+          />
         </View>
       </SafeAreaView>
     );

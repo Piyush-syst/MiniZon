@@ -9,7 +9,7 @@ export default function Header(props) {
         backgroundColor: 'skyblue',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         height: 40,
       }}>
       <View>

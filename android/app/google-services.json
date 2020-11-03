@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "139683401314",
+    "firebase_url": "https://minizon-8db6d.firebaseio.com",
+    "project_id": "minizon-8db6d",
+    "storage_bucket": "minizon-8db6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139683401314:android:433b5210f1b83518494b3b",
+        "android_client_info": {
+          "package_name": "com.minizon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139683401314-f9b4k91hdpoe6dno1p3mkgfj7tl7joo8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.minizon",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "139683401314-1stanh1n460ru5ibro7k6tpp0lv1nsl9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAntO2RdoGVf1c3NkFQm54JMEWznibyGCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139683401314-1stanh1n460ru5ibro7k6tpp0lv1nsl9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

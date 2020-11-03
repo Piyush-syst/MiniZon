@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>139683401314-n6vb2421ejg62k5oro5kb1b93kgv5jqt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.139683401314-n6vb2421ejg62k5oro5kb1b93kgv5jqt</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>139683401314-f9b4k91hdpoe6dno1p3mkgfj7tl7joo8.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCoOKvAmMY2RCMwGMdC5ad1Nsn60fI59Do</string>
+	<key>GCM_SENDER_ID</key>
+	<string>139683401314</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.MiniZon</string>
+	<key>PROJECT_ID</key>
+	<string>minizon-8db6d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>minizon-8db6d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:139683401314:ios:796d1561848e1114494b3b</string>
+	<key>DATABASE_URL</key>
+	<string>https://minizon-8db6d.firebaseio.com</string>
+</dict>
+</plist>
