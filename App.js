@@ -17,15 +17,17 @@ import SignUpScreen from './src/screens/SignUp/SignUpScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPassword/ForgotPasswordScreen';
 import MensWear from './src/screens/MensWear/MensWear';
 import CartScreen from './src/screens/Cart/CartScreen';
+import CreateNewItem from './src/screens/CreateNewItem/CreateNewItem';
 import DashboardScreen from './src/screens/DashBoard/DashboardScreen';
 import WomensWear from './src/screens/WomensWaer/WomensWear';
+import AdminControlPanel from './src/screens/AdminControlPanel/AdminControlPanel';
 import CheckOut from './src/screens/CheckOut/CheckOut';
 import * as CONST from './src/utils/Constants/StringConstants';
 import {Provider} from 'react-redux';
-import ConfigureStore from './src/Stores/ConfigureStore';
+import ConfigureStore from './src/stores/ConfigureStore';
 import SplashScreen from 'react-native-splash-screen';
+import Loader from './src/components/Loader';
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -81,12 +83,10 @@ class App extends Component {
     const MainStack = () => {
       return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-
           <Stack.Screen name="MensWear" component={HomeTabNavigator} />
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
           <Stack.Screen name="Cart" component={CartScreen} />
           <Stack.Screen name="CheckOut" component={CheckOut} />
-
         </Stack.Navigator>
       );
     };
@@ -102,18 +102,28 @@ class App extends Component {
         </Stack.Navigator>
       );
     };
+    const AdminPanel = () => {
+      return (
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="AdminPanel" component={AdminControlPanel} />
+          <Stack.Screen name="CreateNewItem" component={CreateNewItem} />
+          <Stack.Screen name="Cart" component={CartScreen} />
+          <Stack.Screen name="CheckOut" component={CheckOut} />
+        </Stack.Navigator>
+      );
+    };
     return (
       <NavigationContainer>
         <Provider store={this.state.store}>
           <Stack.Navigator
             screenOptions={{headerShown: false}}
             initialRouteName="AuthStack">
-     
-              <Stack.Screen name="AuthStack" component={AuthStack} />
-       
-              <Stack.Screen name="MainStack" component={MainStack} />
-     
+            <Stack.Screen name="AuthStack" component={AuthStack} />
+
+            <Stack.Screen name="MainStack" component={MainStack} />
+            <Stack.Screen name="AdminPanel" component={AdminPanel} />
           </Stack.Navigator>
+          <Loader />
         </Provider>
       </NavigationContainer>
     );

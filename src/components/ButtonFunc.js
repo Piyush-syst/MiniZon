@@ -7,19 +7,21 @@ export default function ButtonFunc(props) {
       activeOpacity={0.8}
       style={{
         backgroundColor: 'powderblue',
-        padding: 10,
-        paddingHorizontal:20,
+        paddingHorizontal: 20,
         width: wid,
         marginTop: 20,
         borderRadius: 20,
         alignItems: 'center',
         alignSelf: 'center',
+        height: 45,
+        justifyContent: 'center',
       }}
       onPress={() => {
         onButtonPress();
       }}>
-      <Text 
-      style={{fontSize:fontsize}}>{text ? text : 'Button'}</Text>
+      <Text style={{fontSize: fontsize, alignSelf: 'center'}}>
+        {text ? text : 'Button'}
+      </Text>
     </TouchableOpacity>
   );
 }

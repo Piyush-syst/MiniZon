@@ -1,7 +1,15 @@
 import React from 'react';
 import {TextInput, StyleSheet, View, Text} from 'react-native';
 export default function TextInputFunc(props) {
-  const {placeholder, alignment, text, textType, onChange, value} = props;
+  const {
+    placeholder,
+    alignment,
+    text,
+    textType,
+    onChange,
+    value,
+    lowerText,
+  } = props;
   //   const {text, onButtonPress} = props;
   return (
     <View>
@@ -23,6 +31,7 @@ export default function TextInputFunc(props) {
         }}
         value={value}
       />
+      <Text>{lowerText}</Text>
     </View>
   );
 }
@@ -52,7 +61,8 @@ const styles = StyleSheet.create({
     height: 30,
     width: '100%',
     borderColor: 'gray',
-    borderBottomWidth: 1,
+    borderWidth: 1,
+    borderRadius: 10,
     marginTop: 10,
     // alignSelf: alignment ? alignment : 'flex-start',
   },

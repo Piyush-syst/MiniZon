@@ -13,51 +13,25 @@ import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
 import {connect} from 'react-redux';
 import {signUp} from '../../actions/CommonAction';
-class SignUpScreen extends Component {
+class CreateNewItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
-      name: '',
-      contact: '',
-      email: '',
-      password: '',
-      cnfpassword: '',
     };
-  }
-  emptyFields() {
-    this.state.name = '';
-    this.state.password = '';
-    this.state.contact = '';
-    this.state.email = '';
-    this.state.cnfpassword = '';
   }
 
   async setData() {
-    var phoneno = /^\d{10}$/;
     if (this.state.name == '' || this.state.name == ' ') {
-      alert('Name must be filled out');
-      this.emptyFields();
+      alert('Name must be filled out'); 
     } else if (this.state.email == '' || this.state.email == ' ') {
       alert('Email must be filled out');
-      this.emptyFields();
     } else if (this.state.contact == '' || this.state.contact == ' ') {
-      alert('Contact must be filled out');
-      this.emptyFields();
+      alert('Contact must be filled out');  
     } else if (this.state.password == '' || this.state.password == ' ') {
       alert('Password must be filled out');
-      this.emptyFields();
     } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
       alert('Password must be confirmed');
-      this.emptyFields();
-    } //else if (this.state.contact) {
-      // if (this.inputtext.value.match(phoneno)) {
-      // } 
-      // else {
-      //   alert('Please Enter 10 digits in contact number');
-      //   this.emptyFields();
-      // }} 
-      else if (this.state.password != this.state.cnfpassword) {
+    } else if (this.state.password != this.state.cnfpassword) {
       alert("Passwords Doesn't Match");
     } else {
       this.props.signUpAction(
@@ -66,14 +40,6 @@ class SignUpScreen extends Component {
         this.state.email,
         this.state.password,
       );
-    }
-  }
-  componentDidUpdate(prevprops) {
-    if (this.props != prevprops) {
-      if (this.props.status) {
-        console.warn('Success');
-        this.props.navigation.navigate('Login');
-      }
     }
   }
   render() {
@@ -85,10 +51,7 @@ class SignUpScreen extends Component {
           bounces={false}
           overScrollMode={'always'}>
           <KeyboardAvoidingView style={styles.view} behavior="position">
-            <Text style={styles.text}>Sign Up!!</Text>
-            <Text style={styles.smalltext}>
-              Create a new account to access thousends of products!!
-            </Text>
+            <Text style={styles.text}>Create Product!!</Text>
             <View style={{paddingLeft: 15, marginTop: 40, marginBottom: 40}}>
               <TextInputFunc
                 textType="medium"
@@ -153,7 +116,8 @@ class SignUpScreen extends Component {
 const mapStateToProps = (state) => {
   const {CommonReducer} = state;
   return {
-    status: CommonReducer.signUpStatus,
+    status: CommonReducer.loginStatus,
+    loginMessage: CommonReducer.loginMessage,
   };
 };
 
@@ -187,4 +151,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNewItem);

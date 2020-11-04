@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Image, SafeAreaView, Text} from 'react-native';
-import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
-class HomeScreen extends Component {
+class DashboardScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.view}>
@@ -97,4 +96,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default DashboardScreen;
