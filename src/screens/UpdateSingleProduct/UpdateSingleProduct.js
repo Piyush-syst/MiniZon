@@ -22,7 +22,7 @@ import uploadImage from '../../utils/Helper/uploadImage';
 import {createProduct} from '../../actions/CreateProductAction';
 import {FlatList} from 'react-native-gesture-handler';
 
-class CreateNewItem extends Component {
+class UpdateSingleProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,41 +47,38 @@ class CreateNewItem extends Component {
     this.setState({downloadUrls: temp});
   }
   async setData() {
-    // if (this.state.name == '' || this.state.name == ' ') {
-    //   alert('Name must be filled out');
-    // } else if (this.state.email == '' || this.state.email == ' ') {
-    //   alert('Email must be filled out');
-    // } else if (this.state.contact == '' || this.state.contact == ' ') {
-    //   alert('Contact must be filled out');
-    // } else if (this.state.password == '' || this.state.password == ' ') {
-    //   alert('Password must be filled out');
-    // } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
-    //   alert('Password must be confirmed');
-    // } else if (this.state.password != this.state.cnfpassword) {
-    //   alert("Passwords Doesn't Match");
-    // }
-    // else {
-    let count = 1;
-    let downloadUrl = [];
-    downloadUrl = await uploadImage(
-      this.state.source,
-      this.state.productName + count++,
-    );
-    this.setState({downloadUrls: downloadUrl});
-    console.log(this.state.downloadUrls);
-    this.props.CreateProductAction(
-      this.state.downloadUrls,
-      this.state.productName,
-      this.state.gender,
-      this.state.category,
-      this.state.brand,
-      this.state.price,
-      this.state.quantity,
-      this.state.description,
-      this.state.size,
-      //  {...this.state},
-    );
-    // }
+    if (this.state.name == '' || this.state.name == ' ') {
+      alert('Name must be filled out');
+    } else if (this.state.email == '' || this.state.email == ' ') {
+      alert('Email must be filled out');
+    } else if (this.state.contact == '' || this.state.contact == ' ') {
+      alert('Contact must be filled out');
+    } else if (this.state.password == '' || this.state.password == ' ') {
+      alert('Password must be filled out');
+    } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
+      alert('Password must be confirmed');
+    } else if (this.state.password != this.state.cnfpassword) {
+      alert("Passwords Doesn't Match");
+    } else {
+      let count = 1;
+      this.state.source.forEach((element) => {
+        uploadImage(element, this.state.productName + count++ + '.jpg');
+      });
+      console.warn(this.state.uri);
+      const downloadurl = await uploadImage(this.state.uri, count);
+      this.props.CreateProductAction(
+        // this.state.downloadUrls,
+        // this.state.name,
+        // this.state.gender,
+        // this.state.category,
+        // this.state.brand,
+        // this.state.price,
+        // this.state.quantity,
+        // this.state.description,
+        // this.state.size,
+        {...this.state},
+      );
+    }
   }
 
   removeImage(index) {
@@ -124,6 +121,7 @@ class CreateNewItem extends Component {
                 }}
                 value={this.state.productName}
               />
+             
               <View style={{flexDirection: 'row'}}>
                 <Dropdown
                   optionList={['Gender', 'Male', 'Female']}
@@ -151,9 +149,9 @@ class CreateNewItem extends Component {
                 text={CONST.PRODUCT_DESCRIPTION}
                 placeholder={CONST.PLACEHOLDER_PRODUCT_DESCRIPTION}
                 onChange={(changedText) => {
-                  this.setState({description: changedText});
+                  this.setState({email: changedText});
                 }}
-                value={this.state.description}
+                value={this.state.email}
               />
               <Dropdown
                 optionList={
@@ -172,9 +170,9 @@ class CreateNewItem extends Component {
                 text={CONST.PRODUCT_PRICE}
                 placeholder={CONST.PLACEHOLDER_PRODUCT_PRICE}
                 onChange={(changedText) => {
-                  this.setState({price: changedText});
+                  this.setState({contact: changedText});
                 }}
-                value={this.state.price}
+                value={this.state.contact}
               />
               <Dropdown
                 optionList={
@@ -191,9 +189,9 @@ class CreateNewItem extends Component {
                 text={CONST.PRODUCT_QUANTITY}
                 placeholder={CONST.PLACEHOLDER_PRODUCT_QUANTITY}
                 onChange={(changedText) => {
-                  this.setState({quantity: changedText});
+                  this.setState({password: changedText});
                 }}
-                value={this.state.quantity}
+                value={this.state.password}
               />
               <Text style={{fontSize: 18, fontWeight: 'bold'}}>
                 {CONST.ADD_IMAGES}
@@ -318,4 +316,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(CreateNewItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UpdateSingleProduct);

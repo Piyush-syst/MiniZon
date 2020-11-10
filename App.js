@@ -27,6 +27,9 @@ import {Provider} from 'react-redux';
 import ConfigureStore from './src/stores/ConfigureStore';
 import SplashScreen from 'react-native-splash-screen';
 import Loader from './src/components/Loader';
+import UpdateProduct from './src/screens/UpdateProduct/UpdateProduct';
+import DeleteProduct from './src/screens/DeleteProduct/DeleteProduct';
+import ViewProduct from './src/screens/ViewProducts/ViewProducts';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -107,8 +110,9 @@ class App extends Component {
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="AdminPanel" component={AdminControlPanel} />
           <Stack.Screen name="CreateNewItem" component={CreateNewItem} />
-          <Stack.Screen name="Cart" component={CartScreen} />
-          <Stack.Screen name="CheckOut" component={CheckOut} />
+          <Stack.Screen name="UpdateProduct" component={UpdateProduct} />
+          <Stack.Screen name="DeleteProduct" component={DeleteProduct} />
+          <Stack.Screen name="ViewProduct" component={ViewProduct} />
         </Stack.Navigator>
       );
     };
@@ -119,7 +123,6 @@ class App extends Component {
             screenOptions={{headerShown: false}}
             initialRouteName="AuthStack">
             <Stack.Screen name="AuthStack" component={AuthStack} />
-
             <Stack.Screen name="MainStack" component={MainStack} />
             <Stack.Screen name="AdminPanel" component={AdminPanel} />
           </Stack.Navigator>

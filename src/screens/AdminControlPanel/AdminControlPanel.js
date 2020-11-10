@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Image, SafeAreaView, Text,TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
@@ -19,8 +26,8 @@ class AdminControlPanel extends Component {
       <SafeAreaView style={styles.view}>
         <Header centerText={CONST.HEADER_TEXT} />
         <View style={{flex: 1, backgroundColor: 'linen'}}>
-
-            <Text style={{
+          <Text
+            style={{
               fontSize: 26,
               marginTop: 50,
               fontWeight: 'bold',
@@ -28,24 +35,80 @@ class AdminControlPanel extends Component {
             }}>
             {CONST.WELCOME_ADMIN}
           </Text>
-          <View style={{flex:1, marginTop:50,flexDirection:'row' }}>
-            <View style={{flex:1, }}>
-              <TouchableOpacity style={{alignItems:'center'}} onPress={() => {
-                this.props.navigation.navigate('CreateNewItem');
-       
-      }}>
-                <Image  style={{height:200, width:'90%'}} source={CONST.CREATE_PRODUCT_ICON_IMAGE}/>
-                <Text style={{fontWeight:'bold', fontSize:16,}}>Create Product</Text>
-              </TouchableOpacity>  
+          <View style={{flex: 1, marginTop: 50, flexDirection: 'row'}}>
+            <View style={{flex: 1}}>
+              <TouchableOpacity
+                style={{alignItems: 'center'}}
+                onPress={() => {
+                  this.props.navigation.navigate('CreateNewItem');
+                }}>
+                <Image
+                  style={{height: 200, width: '90%', tintColor: 'dodgerblue'}}
+                  source={CONST.CREATE_PRODUCT_ICON_IMAGE}
+                />
+                <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                  Create Product
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View style={{flex:1}}>
-            <TouchableOpacity style={{alignItems:'center'}}>
-                <Image  style={{height:200, width:'90%'}} source={CONST.UPDATE_PRODUCT_ICON_IMAGE}/>
-                <Text>Create Product</Text>
-              </TouchableOpacity>  
+            <View style={{flex: 1}}>
+              <TouchableOpacity style={{alignItems: 'center'}}
+              onPress={() => {
+                this.props.navigation.navigate('UpdateProduct');
+              }}>
+                <Image
+                  style={{height: 200, width: '90%', tintColor: 'dodgerblue'}}
+                  source={CONST.UPDATE_PRODUCT_ICON_IMAGE}
+                />
+                <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                  Update Product
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={{flex:1, backgroundColor:'green'}}></View>
+          <View style={{flex: 1, marginTop: 50, flexDirection: 'row'}}>
+            <View style={{flex: 1}}>
+              <TouchableOpacity
+                style={{alignItems: 'center'}}
+                onPress={() => {
+                  this.props.navigation.navigate('DeleteProduct');
+                }}>
+                <Image
+                  style={{height: 200, width: '90%', tintColor: 'dodgerblue'}}
+                  source={CONST.DELETE_PRODUCT_ICON_IMAGE}
+                />
+                <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                  Delete Product
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{flex: 1}}>
+              <TouchableOpacity
+                style={{alignItems: 'center'}}
+                onPress={() => {
+                  this.props.navigation.navigate('ViewProduct');
+                }}>
+                <Image
+                  style={{height: 200, width: '90%', tintColor: 'dodgerblue'}}
+                  source={CONST.VIEW_LIST_ICON_IMAGE}
+                />
+                <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                  View Products
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <ButtonFunc
+            text={CONST.BUTTON_TEXT_LOGOUT}
+            wid="60%"
+            fontsize={16}
+            onButtonPress={() => {
+              this.props.navigation.reset({
+                index: 0,
+                routes: [{name: 'AuthStack'}],
+              });
+            }}
+          />
         </View>
       </SafeAreaView>
     );

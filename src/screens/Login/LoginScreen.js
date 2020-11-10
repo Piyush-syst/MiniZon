@@ -25,21 +25,21 @@ class LoginScreen extends Component {
   componentDidUpdate(prevprops) {
     //if (this.props != prevprops) {
     //  if (this.props.adminLoginStatus) {
-        this.props.navigation.reset({
-          index: 0,
-          routes: [{name: 'AdminPanel'}],
-        });
+    this.props.navigation.reset({
+      index: 0,
+      routes: [{name: 'AdminPanel'}],
+    });
     //  } else if (this.props.status) {
-      //   this.props.navigation.reset({
-      //     index: 0,
-      //     routes: [{name: 'MainStack'}],
-      //   });
-      // } else if (this.props.loginMessage == CONST.DATA_INCORRECT) {
-      //   alert(CONST.DATA_INCORRECT);
-      // } else if (CONST.USER_NOT_EXIST) {
-      //   alert(CONST.USER_NOT_EXIST);
-      // }
-   // }
+    //   this.props.navigation.reset({
+    //     index: 0,
+    //     routes: [{name: 'MainStack'}],
+    //   });
+    // } else if (this.props.loginMessage == CONST.DATA_INCORRECT) {
+    //   alert(CONST.DATA_INCORRECT);
+    // } else if (CONST.USER_NOT_EXIST) {
+    //   alert(CONST.USER_NOT_EXIST);
+    // }
+    // }
   }
   auth() {
     if (this.state.username == '' || this.state.username == ' ') {
@@ -77,6 +77,7 @@ class LoginScreen extends Component {
                 this.setState({password: changedText});
               }}
               value={this.state.password}
+              secure={true}
             />
             <TouchableOpacity
               onPress={() => {

@@ -9,6 +9,7 @@ export default function TextInputFunc(props) {
     onChange,
     value,
     lowerText,
+    secure,
   } = props;
   //   const {text, onButtonPress} = props;
   return (
@@ -29,6 +30,7 @@ export default function TextInputFunc(props) {
         onChangeText={(changedText) => {
           onChange(changedText);
         }}
+        secureTextEntry={secure ? secure : false}
         value={value}
       />
       <Text>{lowerText}</Text>
@@ -58,12 +60,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textInput: {
-    height: 30,
+    height: 45,
     width: '100%',
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 10,
     marginTop: 10,
+    paddingLeft: 10,
     // alignSelf: alignment ? alignment : 'flex-start',
   },
 });

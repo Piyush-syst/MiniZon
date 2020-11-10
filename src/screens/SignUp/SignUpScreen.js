@@ -125,6 +125,7 @@ class SignUpScreen extends Component {
                   this.setState({password: changedText});
                 }}
                 value={this.state.password}
+                secure={true}
               />
               <TextInputFunc
                 textType="medium"
@@ -134,6 +135,7 @@ class SignUpScreen extends Component {
                   this.setState({cnfpassword: changedText});
                 }}
                 value={this.state.cnfpassword}
+                secure={true}
               />
             </View>
             <ButtonFunc
