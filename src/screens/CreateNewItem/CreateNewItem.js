@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Platform,
+  FlatList,
 } from 'react-native';
 import {photoUpload} from '../../components/ImagePicker';
 import TextInputFunc from '../../components/TextInputFunc';
@@ -17,19 +18,19 @@ import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
 import {connect} from 'react-redux';
 import Dropdown from '../../components/Dropdown';
-import ImagePickers from '../../components/ImagePicker';
-import uploadImage from '../../utils/Helper/uploadImage';
+//import ImagePickers from '../../components/ImagePicker';
+//import uploadImage from '../../utils/Helper/uploadImage';
 import {createProduct} from '../../actions/CreateProductAction';
-import {FlatList} from 'react-native-gesture-handler';
+
 
 class CreateNewItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       productName: '',
-      source: [],
-      downloadUrls: [],
-      uri: '',
+        source: [],
+      //  downloadUrls: [],
+        uri: '',
       gender: '',
       category: '',
       brand: '',
@@ -40,12 +41,12 @@ class CreateNewItem extends Component {
     };
   }
 
-  async upload(source, name) {
-    const downloadurl = await uploadImage(source, name);
-    let temp = [...this.state.downloadUrls];
-    temp.push(downloadurl);
-    this.setState({downloadUrls: temp});
-  }
+  // async upload(source, name) {
+  //   const downloadurl = await uploadImage(source, name);
+  //   let temp = [...this.state.downloadUrls];
+  //   temp.push(downloadurl);
+  //   this.setState({downloadUrls: temp});
+  // }
   async setData() {
     // if (this.state.name == '' || this.state.name == ' ') {
     //   alert('Name must be filled out');
@@ -61,16 +62,16 @@ class CreateNewItem extends Component {
     //   alert("Passwords Doesn't Match");
     // }
     // else {
-    let count = 1;
-    let downloadUrl = [];
-    downloadUrl = await uploadImage(
-      this.state.source,
-      this.state.productName + count++,
-    );
-    this.setState({downloadUrls: downloadUrl});
-    console.log(this.state.downloadUrls);
+    //   let count = 1;
+    // let downloadUrl = [];
+    // downloadUrl = await uploadImage(
+    //   this.state.source,
+    //   this.state.productName + count++,
+    // );
+    //this.setState({downloadUrls: downloadUrl});
+    //console.log(this.state.downloadUrls);
     this.props.CreateProductAction(
-      this.state.downloadUrls,
+      // this.state.downloadUrls,
       this.state.productName,
       this.state.gender,
       this.state.category,
@@ -100,7 +101,6 @@ class CreateNewItem extends Component {
     };
     temp.push(obj);
     this.setState({source: temp});
-    console.warn(this.props.sizes, this.props.brands, this.props.categories);
   };
 
   render() {
@@ -269,7 +269,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, nextProps) => {
   return {
     CreateProductAction: (
-      downloadUrls,
+      //downloadUrls,
       name,
       gender,
       category,
@@ -281,7 +281,7 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     ) => {
       dispatch(
         createProduct(
-          downloadUrls,
+          //downloadUrls,
           name,
           gender,
           category,

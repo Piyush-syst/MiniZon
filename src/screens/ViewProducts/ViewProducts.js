@@ -14,31 +14,32 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {connect} from 'react-redux';
 import Header from '../../components/header';
 import QuizData from '../../utils/Constants/QuizData.json';
-import {fetchProduct} from '../../actions/ProductFetchAction';
+import {fetchAllProducts} from '../../actions/ProductFetchAction';
 import * as CONST from '../../utils/Constants/StringConstants';
 class ViewProduct extends Component {
   componentDidMount() {
     this.props.getListAction();
     console.warn(this.props.items);
+    
   }
   constructor(props) {
     super(props);
-    this.state = {
-      image: [
-        // 'https://source.unsplash.com/1024x768/?nature',
-        // 'https://source.unsplash.com/1024x768/?water',
-        // 'https://source.unsplash.com/1024x768/?girl',
-        // 'https://source.unsplash.com/1024x768/?tree',
-        // 'https://source.unsplash.com/1024x768/?tree',
-        // 'https://source.unsplash.com/1024x768/?tree',
-        // 'https://source.unsplash.com/1024x768/?tree',
-        // Network image
-        // Local image
-        CONST.UPDATE_PRODUCT_ICON_IMAGE,
-        CONST.CREATE_PRODUCT_ICON_IMAGE,
-        CONST.DELETE_PRODUCT_ICON_IMAGE,
-      ],
-    };
+    // this.state = {
+    //   image: [
+    //     // 'https://source.unsplash.com/1024x768/?nature',
+    //     // 'https://source.unsplash.com/1024x768/?water',
+    //     // 'https://source.unsplash.com/1024x768/?girl',
+    //     // 'https://source.unsplash.com/1024x768/?tree',
+    //     // 'https://source.unsplash.com/1024x768/?tree',
+    //     // 'https://source.unsplash.com/1024x768/?tree',
+    //     // 'https://source.unsplash.com/1024x768/?tree',
+    //     // Network image
+    //     // Local image
+    //     CONST.UPDATE_PRODUCT_ICON_IMAGE,
+    //     CONST.CREATE_PRODUCT_ICON_IMAGE,
+    //     CONST.DELETE_PRODUCT_ICON_IMAGE,
+    //   ],
+    // };
   }
 
   render() {
@@ -51,11 +52,11 @@ class ViewProduct extends Component {
         <View style={styles.view}>
           <FlatList
             style={{flex: 1}}
-            numColumns={2}
+            //numColumns={2}
             data={this.props.items}
             renderItem={({item, index}) => (
               <View style={styles.ViewList}>
-                <View>
+                {/* <View>
                   <Carousel
                     containerCustomStyle={{backgroundColor: 'linen'}}
                     dotsLength={2}
@@ -82,11 +83,31 @@ class ViewProduct extends Component {
                       );
                     }}
                   />
+                </View> */}
+                <View style={{height: 140, width: 100, padding: 10, margin: 5}}>
+                  <Image
+                    style={{flex: 1}}
+                    source={{
+                      uri:
+                       item.imgUrl
+                    }}
+                  />
                 </View>
-                <Text style={{flex: 1,height:'15%'}}>{item.name}</Text>
-                <Text style={{flex: 1,height:'15%'}}>{item.description}</Text>
-
-                <Text style={styles.halfFlex}>{item.price}</Text>
+                <View style={{paddingLeft: 10}}>
+                  <View style={{flex: 1,}}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: 18,
+                        paddingVertical: 10,
+                      }}>
+                      {item.name}
+                    </Text>
+                    <Text style={{fontSize: 16}}>{item.description}</Text>
+                    <Text style={{fontSize: 16}}>{item.brand}</Text>
+                  </View>
+                  <Text style={{fontSize: 16}}>{item.price} Rs</Text>
+                </View>
               </View>
             )}
             keyExtractor={(item, index) => index}
@@ -106,7 +127,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, nextProps) => {
   return {
     getListAction: () => {
-      dispatch(fetchProduct());
+      dispatch(fetchAllProducts());
     },
   };
 };
@@ -123,12 +144,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'linen',
   },
   ViewList: {
-    backgroundColor: 'linen',
-    flex: 1,
-    margin: 30,
-    justifyContent: 'space-between',
-    height:'auto',
-   
+    height: 160,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: 'black',
+    margin: 5,
+    zIndex: 1,
+    backgroundColor: 'whitesmoke',
+    flexDirection: 'row',
+    padding: 10,
   },
   halfFlex: {
     flex: 1,

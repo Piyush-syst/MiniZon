@@ -33,7 +33,6 @@ export default function (state = initialState, action) {
         loginMessage: action.payload.loginMessage,
       };
     case CONST.ADMIN_LOGIN_SUCCESS:
-      console.warn('Admin Login Case');
       return {
         ...state,
         isAdminLogin: true,
@@ -44,6 +43,11 @@ export default function (state = initialState, action) {
         ...state,
         signUpStatus: true,
       };
+      case CONST.LOGOUT:
+        return {
+          ...state,
+          loginStatus: false,
+        };
     default:
       return state;
   }

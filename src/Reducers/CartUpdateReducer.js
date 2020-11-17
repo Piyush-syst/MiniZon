@@ -1,28 +1,19 @@
 import * as CONST from '../utils/Constants/StringConstants';
 const initialState = {
-  mensWearData: [],
-  womensWearData:[],
-  itemData:[],
-  loaderStatus: false,
+  cartData: [],
 };
-
 export default function (state = initialState, action) {
   switch (action.type) {
-    case CONST.GOT_ITEMS:
+    case CONST.CART_ADD_SUCCESS:
       return {
         ...state,
-
-        mensWearData: action.payload.mensWear,
-        womensWearData:action.payload.womensWear,
+        cartData: action.payload,
       };
-    case CONST.GOT_ALL_ITEMS:
+    case CONST.CART_REMOVE_SUCCESS:
       return {
         ...state,
-
-        itemData: action.payload.items,
-        
+        cartData: [...action.payload],
       };
-      
     default:
       return state;
   }

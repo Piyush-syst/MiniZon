@@ -6,13 +6,24 @@ import {
   ImageBackground,
   FlatList,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {connect} from 'react-redux';
 import Header from '../../components/header';
-import QuizData from '../../utils/Constants/QuizData.json';
+import {fetchProduct} from '../../actions/ProductFetchAction';
 import * as CONST from '../../utils/Constants/StringConstants';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 class MensWear extends Component {
+
+  componentDidMount() {
+    this.props.getListAction();
+
+  }
+
+
   render() {
     return (
       <SafeAreaView style={{backgroundColor: 'skyblue', flex: 1}}>
@@ -23,22 +34,40 @@ class MensWear extends Component {
           navProp={this.props.navigation}
         />
         <View style={styles.view}>
-          <FlatList /*numColumns={2}*/
-            data={QuizData}
+          <FlatList
+            style={{flex: 1}}
+            //numColumns={2}
+            data={this.props.items}
             renderItem={({item, index}) => (
-              <View style={styles.ViewList}>
-                <>
-                  <Text style={styles.halfFlex}>{index + 1}</Text>
-                  {/* <Image source={{uri:'http://farm2.staticflickr.com/1103/567229075_2cf8456f01_s.jpg'}} style={{width:50,
-                height:40}}/> */}
-
-                  <Text style={{flex: 1}}>{item.topicName}</Text>
-                  {/*
-                <Text style={styles.halfFlex}>{item.employee_age}</Text>
-
-                <Text style={styles.halfFlex}>{item.employee_salary}</Text> */}
-                </>
-              </View>
+              <TouchableWithoutFeedback
+                style={styles.ViewList}
+                onPress={() =>
+                  this.props.navigation.navigate('Product', {item})
+                }>
+                <View style={{height: 140, width: 100, padding: 10, margin: 5}}>
+                  <Image
+                    style={{flex: 1}}
+                    source={{
+                      uri: item.imgUrl,
+                    }}
+                  />
+                </View>
+                <View style={{paddingLeft: 10}}>
+                  <View style={{flex: 1}}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: 18,
+                        paddingVertical: 10,
+                      }}>
+                      {item.name}
+                    </Text>
+                    <Text style={{fontSize: 16}}>{item.description}</Text>
+                    <Text style={{fontSize: 16}}>{item.brand}</Text>
+                  </View>
+                  <Text style={{fontSize: 16}}>{item.price} Rs</Text>
+                </View>
+              </TouchableWithoutFeedback>
             )}
             keyExtractor={(item, index) => index}
           />
@@ -47,7 +76,20 @@ class MensWear extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  const {ProductFetchReducer} = state;
+  return {
+    items: ProductFetchReducer.mensWearData,
+  };
+};
 
+const mapDispatchToProps = (dispatch, nextProps) => {
+  return {
+    getListAction: () => {
+      dispatch(fetchProduct());
+    },
+  };
+};
 const styles = StyleSheet.create({
   text: {
     fontSize: 24,
@@ -61,16 +103,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'linen',
   },
   ViewList: {
+    height: 160,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: 'black',
+    margin: 5,
+    zIndex: 1,
+    backgroundColor: 'whitesmoke',
     flexDirection: 'row',
-    backgroundColor: '#a5e2fd',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
+    padding: 10,
   },
   halfFlex: {
-    flex: 0.5,
+    flex: 1,
+  },
+  wrapper: {
+    height: 170,
+    width: 170,
   },
 });
 
-export default MensWear;
+export default connect(mapStateToProps, mapDispatchToProps)(MensWear);

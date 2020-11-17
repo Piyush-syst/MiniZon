@@ -14,10 +14,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* MiniZonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MiniZonTests.m */; };
 		6C3DCE8F254FE63A0085790D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C3DCE8E254FE63A0085790D /* GoogleService-Info.plist */; };
 		6C3DCF11254FFBF80085790D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C3DCE8E254FE63A0085790D /* GoogleService-Info.plist */; };
+		6CDA80EA255A68A500F64C73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B4DCB9C57E57C5C02AE8375B /* libPods-MiniZon-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F273BBCE8C6191CD09D7270A /* libPods-MiniZon-tvOS.a */; };
 		E8A3C0C28C159EF684D62274 /* libPods-MiniZon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E29B508766FAEC22111D222A /* libPods-MiniZon.a */; };
@@ -597,7 +597,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				6CDA80EA255A68A500F64C73 /* main.m in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

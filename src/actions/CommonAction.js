@@ -15,7 +15,6 @@ export function login(username, password) {
             const userData = querySnapshotItem.data();
             if (userData.password == password) {
               if (userData.isAdmin) {
-                console.warn('Admin Login IF');
                 dispatch({
                   type: CONST.ADMIN_LOGIN_SUCCESS,
                   payload: {userData},
@@ -46,7 +45,6 @@ export function login(username, password) {
   };
 }
 export function signUp(name, contact, email, password) {
-  console.warn('signup action');
   return (dispatch) => {
     dispatch({
       type: CONST.START_LOADER,
@@ -66,6 +64,13 @@ export function signUp(name, contact, email, password) {
       });
     dispatch({
       type: CONST.STOP_LOADER,
+    });
+  };
+}
+export function logout() {
+  return (dispatch) => {
+    dispatch({
+      type: CONST.LOGOUT,
     });
   };
 }

@@ -28,8 +28,10 @@ import ConfigureStore from './src/stores/ConfigureStore';
 import SplashScreen from 'react-native-splash-screen';
 import Loader from './src/components/Loader';
 import UpdateProduct from './src/screens/UpdateProduct/UpdateProduct';
+import UpdateSingleProduct from './src/screens/UpdateSingleProduct/UpdateSingleProduct';
 import DeleteProduct from './src/screens/DeleteProduct/DeleteProduct';
 import ViewProduct from './src/screens/ViewProducts/ViewProducts';
+import Product from './src/screens/Product/Product';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -90,6 +92,7 @@ class App extends Component {
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
           <Stack.Screen name="Cart" component={CartScreen} />
           <Stack.Screen name="CheckOut" component={CheckOut} />
+          <Stack.Screen name="Product" component={Product} />
         </Stack.Navigator>
       );
     };
@@ -113,6 +116,7 @@ class App extends Component {
           <Stack.Screen name="UpdateProduct" component={UpdateProduct} />
           <Stack.Screen name="DeleteProduct" component={DeleteProduct} />
           <Stack.Screen name="ViewProduct" component={ViewProduct} />
+          <Stack.Screen name="UpdateSingleProduct" component={UpdateSingleProduct} />
         </Stack.Navigator>
       );
     };

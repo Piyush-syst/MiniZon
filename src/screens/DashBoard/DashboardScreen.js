@@ -3,6 +3,8 @@ import {StyleSheet, View, Image, SafeAreaView, Text} from 'react-native';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
+import {connect} from 'react-redux';
+import {logout} from '../../actions/CommonAction';
 class DashboardScreen extends Component {
   render() {
     return (
@@ -18,15 +20,15 @@ class DashboardScreen extends Component {
             }}
             source={CONST.DASHBOARD_ICON_IMAGE}
           />
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, alignItems:'center'}}>
             <View
               style={{
                 flexDirection: 'row',
                 marginVertical: 10,
                 marginLeft: 20,
               }}>
-              <Text style={{fontWeight: 'bold', fontSize: 28}}>
-                Piyush Shrivastava
+              <Text style={{fontWeight: 'bold', fontSize: 24}}>
+                {this.props.user.name}
               </Text>
             </View>
             <View
@@ -35,11 +37,9 @@ class DashboardScreen extends Component {
                 marginVertical: 10,
                 marginLeft: 20,
               }}>
-              <Text style={{fontWeight: 'bold', fontSize: 28, marginRight: 20}}>
-                {CONST.TEXT_MAIL}
-              </Text>
-              <Text style={{fontWeight: 'bold', fontSize: 28}}>
-                piyushshrivastava.801@gmail.com
+
+              <Text style={{fontWeight: 'bold', fontSize: 24}}>
+              {this.props.user.email}
               </Text>
             </View>
             <View
@@ -48,21 +48,10 @@ class DashboardScreen extends Component {
                 marginVertical: 10,
                 marginLeft: 20,
               }}>
-              <Text style={{fontWeight: 'bold', fontSize: 28, marginRight: 20}}>
-                {CONST.TEXT_CONTACT}
+              <Text style={{fontWeight: 'bold', fontSize: 24, marginRight: 20}}>
+              {this.props.user.contact}
               </Text>
-              <Text style={{fontWeight: 'bold', fontSize: 28}} />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginVertical: 10,
-                marginLeft: 20,
-              }}>
-              <Text style={{fontWeight: 'bold', fontSize: 28, marginRight: 20}}>
-                {CONST.TEXT_JOINING_DATE}
-              </Text>
-              <Text style={{fontWeight: 'bold', fontSize: 28}} />
+             
             </View>
           </View>
           <ButtonFunc
@@ -70,6 +59,7 @@ class DashboardScreen extends Component {
             wid="70%"
             fontsize={14}
             onButtonPress={() => {
+              this.props.logoutAction();
               this.props.navigation.reset({
                 index: 0,
                 routes: [{name: 'AuthStack'}],
@@ -81,7 +71,20 @@ class DashboardScreen extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  const {CommonReducer} = state;
+  return {
+    user: CommonReducer.userData,
+  };
+};
 
+const mapDispatchToProps = (dispatch, nextProps) => {
+  return {
+    logoutAction: () => {
+      dispatch(logout());
+    },
+  };
+};
 const styles = StyleSheet.create({
   text: {
     fontSize: 24,
@@ -96,4 +99,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DashboardScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
+

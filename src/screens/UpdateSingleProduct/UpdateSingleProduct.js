@@ -19,24 +19,26 @@ import {connect} from 'react-redux';
 import Dropdown from '../../components/Dropdown';
 import ImagePickers from '../../components/ImagePicker';
 import uploadImage from '../../utils/Helper/uploadImage';
-import {createProduct} from '../../actions/CreateProductAction';
+import {updateProduct} from '../../actions/UpdateProductAction';
 import {FlatList} from 'react-native-gesture-handler';
 
 class UpdateSingleProduct extends Component {
   constructor(props) {
     super(props);
+    const {ID ,name, gender, category, brand, description, price, quantity, size} = props.route.params.product;
     this.state = {
-      productName: '',
+      productName: name,
       source: [],
       downloadUrls: [],
       uri: '',
-      gender: '',
-      category: '',
-      brand: '',
-      description: '',
-      price: 0,
-      quantity: 0,
-      size: '',
+      gender: gender,
+      category: category ,
+      brand: brand,
+      description: description,
+      price: price,
+      quantity: quantity,
+      size: size,
+      id: ID,
     };
   }
 
@@ -47,38 +49,39 @@ class UpdateSingleProduct extends Component {
     this.setState({downloadUrls: temp});
   }
   async setData() {
-    if (this.state.name == '' || this.state.name == ' ') {
-      alert('Name must be filled out');
-    } else if (this.state.email == '' || this.state.email == ' ') {
-      alert('Email must be filled out');
-    } else if (this.state.contact == '' || this.state.contact == ' ') {
-      alert('Contact must be filled out');
-    } else if (this.state.password == '' || this.state.password == ' ') {
-      alert('Password must be filled out');
-    } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
-      alert('Password must be confirmed');
-    } else if (this.state.password != this.state.cnfpassword) {
-      alert("Passwords Doesn't Match");
-    } else {
-      let count = 1;
-      this.state.source.forEach((element) => {
-        uploadImage(element, this.state.productName + count++ + '.jpg');
-      });
-      console.warn(this.state.uri);
-      const downloadurl = await uploadImage(this.state.uri, count);
-      this.props.CreateProductAction(
-        // this.state.downloadUrls,
-        // this.state.name,
-        // this.state.gender,
-        // this.state.category,
-        // this.state.brand,
-        // this.state.price,
-        // this.state.quantity,
-        // this.state.description,
-        // this.state.size,
-        {...this.state},
+    // if (this.state.name == '' || this.state.name == ' ') {
+    //   alert('Name must be filled out');
+    // } else if (this.state.email == '' || this.state.email == ' ') {
+    //   alert('Email must be filled out');
+    // } else if (this.state.contact == '' || this.state.contact == ' ') {
+    //   alert('Contact must be filled out');
+    // } else if (this.state.password == '' || this.state.password == ' ') {
+    //   alert('Password must be filled out');
+    // } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
+    //   alert('Password must be confirmed');
+    // } else if (this.state.password != this.state.cnfpassword) {
+    //   alert("Passwords Doesn't Match");
+    // } else {
+      // let count = 1;
+      // this.state.source.forEach((element) => {
+      //   uploadImage(element, this.state.productName + count++ + '.jpg');
+      // });
+      // console.warn(this.state.uri);
+      // const downloadurl = await uploadImage(this.state.uri, count);
+      this.props.UpdateProductAction(
+       // this.state.downloadUrls,
+       this.state.id,
+        this.state.productName,
+        this.state.gender,
+        this.state.category,
+        this.state.brand,
+        this.state.price,
+        this.state.quantity,
+        this.state.description,
+        this.state.size,
+        //{...this.state},
       );
-    }
+   // }
   }
 
   removeImage(index) {
@@ -101,6 +104,7 @@ class UpdateSingleProduct extends Component {
   };
 
   render() {
+   
     return (
       <SafeAreaView style={{backgroundColor: 'skyblue'}}>
         <Header centerText="MiniZon" />
@@ -110,7 +114,7 @@ class UpdateSingleProduct extends Component {
           bounces={false}
           overScrollMode={'always'}>
           <KeyboardAvoidingView style={styles.view} behavior="position">
-            <Text style={styles.text}>{CONST.CREATE_PRODUCT}</Text>
+            <Text style={styles.text}>{CONST.UPDATE_PRODUCT}</Text>
             <View style={{paddingHorizontal: 15, marginVertical: 40}}>
               <TextInputFunc
                 textType="medium"
@@ -125,11 +129,12 @@ class UpdateSingleProduct extends Component {
               <View style={{flexDirection: 'row'}}>
                 <Dropdown
                   optionList={['Gender', 'Male', 'Female']}
-                  defaultValue="Gender"
+                  defaultValue={this.state.gender}
                   width="50%"
                   onClickDropDown={(value) => {
                     this.setState({gender: value});
                   }}
+                  
                 />
                 <Dropdown
                   optionList={
@@ -137,7 +142,7 @@ class UpdateSingleProduct extends Component {
                       ? this.props.sizesVar
                       : ['S', 'M', 'L', 'XL', 'XXL']
                   }
-                  defaultValue="Sizes"
+                  defaultValue={this.state.size}
                   width="50%"
                   onClickDropDown={(value) => {
                     this.setState({size: value});
@@ -149,9 +154,9 @@ class UpdateSingleProduct extends Component {
                 text={CONST.PRODUCT_DESCRIPTION}
                 placeholder={CONST.PLACEHOLDER_PRODUCT_DESCRIPTION}
                 onChange={(changedText) => {
-                  this.setState({email: changedText});
+                  this.setState({description: changedText});
                 }}
-                value={this.state.email}
+                value={this.state.description}
               />
               <Dropdown
                 optionList={
@@ -159,7 +164,7 @@ class UpdateSingleProduct extends Component {
                     ? this.props.categories
                     : ['Trouser', 'T-Shirt']
                 }
-                defaultValue="Category"
+                defaultValue={this.state.category}
                 width="90%"
                 onClickDropDown={(value) => {
                   this.setState({category: value});
@@ -170,15 +175,15 @@ class UpdateSingleProduct extends Component {
                 text={CONST.PRODUCT_PRICE}
                 placeholder={CONST.PLACEHOLDER_PRODUCT_PRICE}
                 onChange={(changedText) => {
-                  this.setState({contact: changedText});
+                  this.setState({price: changedText});
                 }}
-                value={this.state.contact}
+                value={this.state.price}
               />
               <Dropdown
                 optionList={
                   this.props.brands ? this.props.brands : ['Nike', 'Reebok']
                 }
-                defaultValue="Brand"
+                defaultValue={this.state.brand}
                 width="90%"
                 onClickDropDown={(value) => {
                   this.setState({brand: value});
@@ -189,9 +194,9 @@ class UpdateSingleProduct extends Component {
                 text={CONST.PRODUCT_QUANTITY}
                 placeholder={CONST.PLACEHOLDER_PRODUCT_QUANTITY}
                 onChange={(changedText) => {
-                  this.setState({password: changedText});
+                  this.setState({quantity: changedText});
                 }}
-                value={this.state.password}
+                value={this.state.quantity}
               />
               <Text style={{fontSize: 18, fontWeight: 'bold'}}>
                 {CONST.ADD_IMAGES}
@@ -241,10 +246,11 @@ class UpdateSingleProduct extends Component {
                 />
               </View>
               <ButtonFunc
-                text={CONST.CREATE_PRODUCT}
+                text={CONST.UPDATE_PRODUCT}
                 wid="60%"
                 fontsize={16}
                 onButtonPress={() => {
+                  console.warn("clicked");
                   this.setData();
                 }}
               />
@@ -266,8 +272,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, nextProps) => {
   return {
-    CreateProductAction: (
-      downloadUrls,
+    UpdateProductAction: (
+      id,
       name,
       gender,
       category,
@@ -278,8 +284,8 @@ const mapDispatchToProps = (dispatch, nextProps) => {
       size,
     ) => {
       dispatch(
-        createProduct(
-          downloadUrls,
+        updateProduct(
+          id,
           name,
           gender,
           category,

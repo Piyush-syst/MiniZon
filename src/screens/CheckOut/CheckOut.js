@@ -3,45 +3,112 @@ import {
   StyleSheet,
   View,
   Text,
-  ImageBackground,
+  Image,
   FlatList,
   SafeAreaView,
 } from 'react-native';
-import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
-import QuizData from '../../utils/Constants/QuizData.json';
 import * as CONST from '../../utils/Constants/StringConstants';
-class MensWear extends Component {
+class CheckOut extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: props.route.params.items,
+
+      show: true,
+      amount: 0,
+    };
+  }
+  componentDidMount() {
+    let total = 0;
+    console.warn(this.state.product);
+    this.state.product.forEach((element) => {
+      console.warn(element);
+      if (element.quantity == 0) {
+        total = total + element.items.price * 1;
+      } else {
+        total = total + element.items.price * element.quantity;
+      }
+    });
+    this.setState({amount: total});
+  }
   render() {
     return (
       <SafeAreaView style={{backgroundColor: 'skyblue', flex: 1}}>
         <Header
           centerText={CONST.HEADER_TEXT}
           isIconLeftVisible
-          isIconRightVisible
           navProp={this.props.navigation}
         />
         <View style={styles.view}>
-          <FlatList /*numColumns={2}*/
-            data={QuizData}
+          <FlatList
+            data={this.state.product}
             renderItem={({item, index}) => (
-              <View style={styles.ViewList}>
-                <>
-                  <Text style={styles.halfFlex}>{index + 1}</Text>
-                  {/* <Image source={{uri:'http://farm2.staticflickr.com/1103/567229075_2cf8456f01_s.jpg'}} style={{width:50,
-                height:40}}/> */}
+              <>
+                <View
+                  style={{
+                    height: 160,
+                    borderWidth: 1,
+                    borderRadius: 15,
+                    borderColor: 'black',
+                    margin: 5,
+                    zIndex: 1,
+                    backgroundColor: 'whitesmoke',
+                    flexDirection: 'row',
+                    padding: 10,
+                  }}>
+                  <Image
+                    style={{
+                      height: 140,
+                      width: 100,
+                      padding: 10,
+                      margin: 5,
+                    }}
+                    source={{
+                      uri: item.items.imgUrl,
+                    }}
+                  />
 
-                  <Text style={{flex: 1}}>{item.topicName}</Text>
-                  {/*
-                <Text style={styles.halfFlex}>{item.employee_age}</Text>
-
-                <Text style={styles.halfFlex}>{item.employee_salary}</Text> */}
-                </>
-              </View>
+                  <View style={{paddingLeft: 10}}>
+                    <View style={{flex: 1}}>
+                      <Text
+                        style={{
+                          fontWeight: 'bold',
+                          fontSize: 18,
+                          paddingVertical: 10,
+                        }}>
+                        {item.items.name}
+                      </Text>
+                      <Text style={{fontSize: 16}}>
+                        {item.items.description}
+                      </Text>
+                      <Text style={{fontSize: 16}}>{item.items.brand}</Text>
+                      <Text style={{fontSize: 16}}>
+                        Quantity:{item.quantity}
+                      </Text>
+                      <Text style={{fontSize: 16}}>{item.items.price} Rs</Text>
+                    </View>
+                  </View>
+                </View>
+              </>
             )}
             keyExtractor={(item, index) => index}
           />
+          <View
+            style={{
+              borderWidth: 1,
+              borderRadius: 15,
+              borderColor: 'black',
+              margin: 5,
+              zIndex: 1,
+              backgroundColor: 'whitesmoke',
+              flexDirection: 'row',
+              padding: 10,
+            }}>
+            <Text style={{fontSize: 18}}>Total:</Text>
+            <Text style={{fontSize: 18}}>{this.state.amount} Rs.</Text>
+          </View>
           <ButtonFunc
             text={CONST.BUTTON_TEXT_PROCEEDTOPAY}
             wid="70%"
@@ -79,4 +146,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MensWear;
+export default CheckOut;

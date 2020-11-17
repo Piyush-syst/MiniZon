@@ -15,6 +15,7 @@ import {fetchSizes} from '../../actions/FetchAttributesAction';
 import {fetchCategories} from '../../actions/FetchAttributesAction';
 import {fetchBrands} from '../../actions/FetchAttributesAction';
 import {connect} from 'react-redux';
+import {logout} from '../../actions/CommonAction';
 class AdminControlPanel extends Component {
   componentDidMount() {
     this.props.FetchSizeAction();
@@ -103,6 +104,7 @@ class AdminControlPanel extends Component {
             wid="60%"
             fontsize={16}
             onButtonPress={() => {
+                this.props.logoutAction();
               this.props.navigation.reset({
                 index: 0,
                 routes: [{name: 'AuthStack'}],
@@ -125,6 +127,9 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
     FetchBrandAction: () => {
       dispatch(fetchBrands());
+    },
+   logoutAction: () => {
+      dispatch(logout());
     },
   };
 };

@@ -18,28 +18,28 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: 'Ssds',
+      password: 'e',
     };
   }
   componentDidUpdate(prevprops) {
     //if (this.props != prevprops) {
-    //  if (this.props.adminLoginStatus) {
-    this.props.navigation.reset({
-      index: 0,
-      routes: [{name: 'AdminPanel'}],
-    });
-    //  } else if (this.props.status) {
-    //   this.props.navigation.reset({
-    //     index: 0,
-    //     routes: [{name: 'MainStack'}],
-    //   });
-    // } else if (this.props.loginMessage == CONST.DATA_INCORRECT) {
-    //   alert(CONST.DATA_INCORRECT);
-    // } else if (CONST.USER_NOT_EXIST) {
-    //   alert(CONST.USER_NOT_EXIST);
-    // }
-    // }
+      // if (this.props.adminLoginStatus) {
+        this.props.navigation.reset({
+          index: 0,
+          routes: [{name: 'AdminPanel'}],
+        });
+      // } else if (this.props.status) {
+      //   this.props.navigation.reset({
+      //     index: 0,
+      //     routes: [{name: 'MainStack'}],
+      //   });
+      // } else if (this.props.loginMessage == CONST.DATA_INCORRECT) {
+      //   alert(CONST.DATA_INCORRECT);
+      // } else if (CONST.USER_NOT_EXIST) {
+      //   alert(CONST.USER_NOT_EXIST);
+      // }
+    //}
   }
   auth() {
     if (this.state.username == '' || this.state.username == ' ') {

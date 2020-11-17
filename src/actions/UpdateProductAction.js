@@ -1,7 +1,7 @@
 import * as CONST from '../utils/Constants/StringConstants';
 import firestore from '@react-native-firebase/firestore';
-export function createProduct(
-  //downloadUrls,
+export function updateProduct(
+    id,
   name,
   gender,
   category,
@@ -11,12 +11,13 @@ export function createProduct(
   description,
   size,
 ) {
+    console.warn(id, name);
   return (dispatch) => {
     firestore()
       .collection('items')
-      .add({
+      .doc(id)
+  .update({
         name: name,
-        //downloadUrls: downloadUrls,
         gender: gender,
         category: category,
         brand: brand,
@@ -24,9 +25,9 @@ export function createProduct(
         quantity: quantity,
         description: description,
         size: size,
-      })
-      .then(() => {
-        console.warn('Item added!');
-      });
+  })
+  .then(() => {
+    console.log('User updated!');
+  });
   };
 }
