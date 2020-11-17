@@ -21,7 +21,7 @@ import ImagePickers from '../../components/ImagePicker';
 import uploadImage from '../../utils/Helper/uploadImage';
 import {updateProduct} from '../../actions/UpdateProductAction';
 import {FlatList} from 'react-native-gesture-handler';
-
+import styles from './styles';
 class UpdateSingleProduct extends Component {
   constructor(props) {
     super(props);
@@ -106,16 +106,16 @@ class UpdateSingleProduct extends Component {
   render() {
    
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue'}}>
+      <SafeAreaView style={styles.safeView}>
         <Header centerText="MiniZon" />
         <ScrollView
-          style={{marginBottom: 20}}
+          style={styles.scrollView}
           contentInsetAdjustmentBehavior="automatic"
           bounces={false}
           overScrollMode={'always'}>
           <KeyboardAvoidingView style={styles.view} behavior="position">
             <Text style={styles.text}>{CONST.UPDATE_PRODUCT}</Text>
-            <View style={{paddingHorizontal: 15, marginVertical: 40}}>
+            <View style={styles.subView}>
               <TextInputFunc
                 textType="medium"
                 text={CONST.PRODUCT_NAME}
@@ -126,7 +126,7 @@ class UpdateSingleProduct extends Component {
                 value={this.state.productName}
               />
              
-              <View style={{flexDirection: 'row'}}>
+              <View style={styles.flexRow}>
                 <Dropdown
                   optionList={['Gender', 'Male', 'Female']}
                   defaultValue={this.state.gender}
@@ -177,6 +177,7 @@ class UpdateSingleProduct extends Component {
                 onChange={(changedText) => {
                   this.setState({price: changedText});
                 }}
+                kType= 'numeric'
                 value={this.state.price}
               />
               <Dropdown
@@ -196,18 +197,19 @@ class UpdateSingleProduct extends Component {
                 onChange={(changedText) => {
                   this.setState({quantity: changedText});
                 }}
+                kType= 'numeric'
                 value={this.state.quantity}
               />
-              <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+              <Text style={styles.pickerText}>
                 {CONST.ADD_IMAGES}
               </Text>
-              <View style={{flexDirection: 'row', marginTop: 30}}>
+              <View style={styles.imagePickerView}>
                 <TouchableOpacity
                   onPress={() => {
                     this.handlePhotoUpload();
                   }}>
                   <Image
-                    style={{height: 50, width: 50, tintColor: 'skyblue'}}
+                    style={styles.pickerButtonImage}
                     source={CONST.PLUS_ICON_IMAGE}
                   />
                 </TouchableOpacity>
@@ -220,26 +222,16 @@ class UpdateSingleProduct extends Component {
                         onPress={() => {
                           this.removeImage(index);
                         }}
-                        style={{
-                          position: 'absolute',
-                          zIndex: 1,
-                          right: 0,
-                          top: 0,
-                        }}>
+                        style={styles.topButton}>
                         <Image
                           source={CONST.CROSS_ICON_IMAGE}
-                          style={{
-                            height: 20,
-                            width: 20,
-                            tintColor: 'black',
-                            transform: [{rotate: '45deg'}],
-                          }}
+                          style={styles.crossImage}
                         />
                       </TouchableOpacity>
 
                       <Image
                         source={{uri: item.img}}
-                        style={{height: 50, width: 50}}
+                        style={styles.pickedImage}
                       />
                     </View>
                   )}
@@ -299,29 +291,7 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  smalltext: {
-    marginTop: 20,
-    color: 'slategray',
-    alignSelf: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-  medium: {
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

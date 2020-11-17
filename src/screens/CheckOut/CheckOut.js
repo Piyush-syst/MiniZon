@@ -10,6 +10,7 @@ import {
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
+import styles from './styles';
 class CheckOut extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,7 @@ class CheckOut extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue', flex: 1}}>
+      <SafeAreaView style={styles.safeView}>
         <Header
           centerText={CONST.HEADER_TEXT}
           isIconLeftVisible
@@ -47,47 +48,28 @@ class CheckOut extends Component {
             renderItem={({item, index}) => (
               <>
                 <View
-                  style={{
-                    height: 160,
-                    borderWidth: 1,
-                    borderRadius: 15,
-                    borderColor: 'black',
-                    margin: 5,
-                    zIndex: 1,
-                    backgroundColor: 'whitesmoke',
-                    flexDirection: 'row',
-                    padding: 10,
-                  }}>
+                  style={styles.itemView}>
                   <Image
-                    style={{
-                      height: 140,
-                      width: 100,
-                      padding: 10,
-                      margin: 5,
-                    }}
+                    style={styles.itemImage}
                     source={{
                       uri: item.items.imgUrl,
                     }}
                   />
 
-                  <View style={{paddingLeft: 10}}>
-                    <View style={{flex: 1}}>
+                  <View style={styles.itemSubView}>
+                    <View style={styles.flexFull}>
                       <Text
-                        style={{
-                          fontWeight: 'bold',
-                          fontSize: 18,
-                          paddingVertical: 10,
-                        }}>
+                        style={styles.itemHeadText}>
                         {item.items.name}
                       </Text>
-                      <Text style={{fontSize: 16}}>
+                      <Text style={styles.itemText}>
                         {item.items.description}
                       </Text>
-                      <Text style={{fontSize: 16}}>{item.items.brand}</Text>
-                      <Text style={{fontSize: 16}}>
+                      <Text style={styles.itemText}>{item.items.brand}</Text>
+                      <Text style={styles.itemText}>
                         Quantity:{item.quantity}
                       </Text>
-                      <Text style={{fontSize: 16}}>{item.items.price} Rs</Text>
+                      <Text style={styles.itemText}>{item.items.price} Rs</Text>
                     </View>
                   </View>
                 </View>
@@ -96,18 +78,9 @@ class CheckOut extends Component {
             keyExtractor={(item, index) => index}
           />
           <View
-            style={{
-              borderWidth: 1,
-              borderRadius: 15,
-              borderColor: 'black',
-              margin: 5,
-              zIndex: 1,
-              backgroundColor: 'whitesmoke',
-              flexDirection: 'row',
-              padding: 10,
-            }}>
-            <Text style={{fontSize: 18}}>Total:</Text>
-            <Text style={{fontSize: 18}}>{this.state.amount} Rs.</Text>
+            style={styles.priceBarView}>
+            <Text style={styles.priceBarText}>Total:</Text>
+            <Text style={styles.priceBarText}>{this.state.amount} Rs.</Text>
           </View>
           <ButtonFunc
             text={CONST.BUTTON_TEXT_PROCEEDTOPAY}
@@ -120,30 +93,5 @@ class CheckOut extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-  ViewList: {
-    flexDirection: 'row',
-    backgroundColor: '#a5e2fd',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
-  },
-  halfFlex: {
-    flex: 0.5,
-  },
-});
 
 export default CheckOut;

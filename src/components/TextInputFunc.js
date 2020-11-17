@@ -10,6 +10,7 @@ export default function TextInputFunc(props) {
     value,
     lowerText,
     secure,
+    kType,
   } = props;
   //   const {text, onButtonPress} = props;
   return (
@@ -32,6 +33,7 @@ export default function TextInputFunc(props) {
         }}
         secureTextEntry={secure ? secure : false}
         value={value}
+        keyboardType= {kType? kType : 'default'}
       />
       <Text>{lowerText}</Text>
     </View>

@@ -4,11 +4,10 @@ import {
   View,
   Text,
   Image,
-  FlatList,
   SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
-import TextInputFunc from '../../components/TextInputFunc';
+import styles from './styles';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
@@ -18,14 +17,14 @@ class Product extends Component {
     super(props);
     this.state = {
       product: props.route.params.item,
-      quantity: 0,
+      quantity: 1,
     };
   }
   IncreamentItem = () => {
     this.setState({quantity: this.state.quantity + 1});
   };
   DecreamentItem = () => {
-    if (this.state.quantity > 0) {
+    if (this.state.quantity > 1) {
       this.setState({quantity: this.state.quantity - 1});
     }
   };
@@ -40,36 +39,32 @@ class Product extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue', flex: 1}}>
+      <SafeAreaView style={styles.safeView}>
         <Header
           centerText={CONST.HEADER_TEXT}
-          isIconLeftVisible
+          isIconBackVisible
           isIconRightVisible
           navProp={this.props.navigation}
         />
-        <View style={{backgroundColor: 'linen', flex: 1}}>
+        <View style={styles.view}>
           <Image
-            style={{height: 500}}
+            style={styles.image}
             source={{
               uri: this.state.product.imgUrl,
             }}
           />
 
-          <View style={{padding: 15, marginLeft: 10}}>
+          <View style={styles.subView}>
             <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 18,
-                paddingVertical: 10,
-              }}>
+              style={styles.headText}>
               {this.state.product.name}
             </Text>
-            <Text style={{fontSize: 16}}>{this.state.product.description}</Text>
-            <Text style={{fontSize: 16}}>{this.state.product.brand}</Text>
+            <Text style={styles.text}>{this.state.product.description}</Text>
+            <Text style={styles.text}>{this.state.product.brand}</Text>
 
-            <Text style={{fontSize: 16}}>{this.state.product.price} Rs</Text>
+            <Text style={styles.text}>{this.state.product.price} Rs</Text>
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <View style={styles.counterView}>
             <ButtonFunc
               text={'+'}
               wid="20%"
@@ -79,12 +74,7 @@ class Product extends Component {
               }}
             />
             <Text
-              style={{
-                padding: 15,
-                fontSize: 16,
-                fontWeight: 'bold',
-                marginTop: 20,
-              }}>
+              style={styles.counterText}>
               {this.state.quantity}
             </Text>
             <ButtonFunc
@@ -96,7 +86,7 @@ class Product extends Component {
               }}
             />
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <View style={styles.buttonView}>
             <ButtonFunc
               text={'Add To Cart'}
               wid="40%"
@@ -136,29 +126,6 @@ const mapStateToProps = (state) => {
     items: CartUpdateReducer.cartData,
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-  ViewList: {
-    flexDirection: 'row',
-    backgroundColor: '#a5e2fd',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
-  },
-  halfFlex: {
-    flex: 0.5,
-  },
-});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

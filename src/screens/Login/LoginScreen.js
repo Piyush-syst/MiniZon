@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import {connect} from 'react-redux';
-
+import styles from './styles';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
@@ -18,28 +18,28 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Ssds',
-      password: 'e',
+      username: '',
+      password: '',
     };
   }
   componentDidUpdate(prevprops) {
-    //if (this.props != prevprops) {
-      // if (this.props.adminLoginStatus) {
+    if (this.props != prevprops) {
+      if (this.props.adminLoginStatus) {
         this.props.navigation.reset({
           index: 0,
           routes: [{name: 'AdminPanel'}],
         });
-      // } else if (this.props.status) {
-      //   this.props.navigation.reset({
-      //     index: 0,
-      //     routes: [{name: 'MainStack'}],
-      //   });
-      // } else if (this.props.loginMessage == CONST.DATA_INCORRECT) {
-      //   alert(CONST.DATA_INCORRECT);
-      // } else if (CONST.USER_NOT_EXIST) {
-      //   alert(CONST.USER_NOT_EXIST);
-      // }
-    //}
+      } else if (this.props.status) {
+        this.props.navigation.reset({
+          index: 0,
+          routes: [{name: 'MainStack'}],
+        });
+      } else if (this.props.loginMessage == CONST.DATA_INCORRECT) {
+        alert(CONST.DATA_INCORRECT);
+      } else if (CONST.USER_NOT_EXIST) {
+        alert(CONST.USER_NOT_EXIST);
+      }
+    }
   }
   auth() {
     if (this.state.username == '' || this.state.username == ' ') {
@@ -52,14 +52,14 @@ class LoginScreen extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue', flex: 1}}>
+      <SafeAreaView style={styles.safeView}>
         <Header
           centerText={CONST.HEADER_TEXT}
           navProp={this.props.navigation}
         />
         <View style={styles.view}>
-          <Text style={styles.text}>Welcome!!</Text>
-          <View style={{paddingHorizontal: 15}}>
+          <Text style={styles.headText}>Welcome!!</Text>
+          <View style={styles.subView}>
             <TextInputFunc
               text={CONST.TEXT_MAIL}
               alignment={'center'}
@@ -84,12 +84,7 @@ class LoginScreen extends Component {
                 this.props.navigation.navigate('ForgotPassword');
               }}>
               <Text
-                style={{
-                  alignSelf: 'flex-end',
-                  fontWeight: 'bold',
-                  fontSize: 12,
-                  marginTop: 10,
-                }}>
+                style={styles.buttonText}>
                 {CONST.HEAD_TEXT_FORGOTPASSWORD}
               </Text>
             </TouchableOpacity>
@@ -132,18 +127,5 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

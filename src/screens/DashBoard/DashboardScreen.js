@@ -5,55 +5,40 @@ import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/CommonAction';
+import styles from './styles';
 class DashboardScreen extends Component {
   render() {
     return (
-      <SafeAreaView style={styles.view}>
+      <SafeAreaView style={styles.safeView}>
         <Header centerText={CONST.HEADER_TEXT} />
-        <View style={{backgroundColor: 'linen', flex: 1}}>
+        <View style={styles.view}>
           <Image
-            style={{
-              height: 200,
-              width: 200,
-              alignSelf: 'center',
-              marginTop: 50,
-            }}
+            style={styles.profileImage}
             source={CONST.DASHBOARD_ICON_IMAGE}
           />
-          <View style={{flex: 1, alignItems:'center'}}>
+          <View style={styles.subView}>
             <View
-              style={{
-                flexDirection: 'row',
-                marginVertical: 10,
-                marginLeft: 20,
-              }}>
-              <Text style={{fontWeight: 'bold', fontSize: 24}}>
+              style={styles.textView}>
+              <Text style={styles.text}>
                 {this.props.user.name}
               </Text>
             </View>
             <View
-              style={{
-                flexDirection: 'row',
-                marginVertical: 10,
-                marginLeft: 20,
-              }}>
+              style={styles.textView}>
 
-              <Text style={{fontWeight: 'bold', fontSize: 24}}>
+              <Text style={styles.text}>
               {this.props.user.email}
               </Text>
             </View>
             <View
-              style={{
-                flexDirection: 'row',
-                marginVertical: 10,
-                marginLeft: 20,
-              }}>
-              <Text style={{fontWeight: 'bold', fontSize: 24, marginRight: 20}}>
+              style={styles.textView}>
+              <Text style={styles.text}>
               {this.props.user.contact}
               </Text>
              
             </View>
           </View>
+          <View style={styles.buttonView}>
           <ButtonFunc
             text={CONST.BUTTON_TEXT_LOGOUT}
             wid="70%"
@@ -66,6 +51,7 @@ class DashboardScreen extends Component {
               });
             }}
           />
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -85,19 +71,7 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'skyblue',
-  },
-});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
 

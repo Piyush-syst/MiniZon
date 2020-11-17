@@ -7,6 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
+import styles from './styles';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
@@ -78,18 +79,17 @@ class SignUpScreen extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue'}}>
+      <SafeAreaView style={styles.safeView}>
         <Header centerText="MiniZon" />
         <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
           bounces={false}
-          overScrollMode={'always'}>
+          >
           <KeyboardAvoidingView style={styles.view} behavior="position">
-            <Text style={styles.text}>Sign Up!!</Text>
+            <Text style={styles.headText}>Sign Up!!</Text>
             <Text style={styles.smalltext}>
               Create a new account to access thousends of products!!
             </Text>
-            <View style={{paddingLeft: 15, marginTop: 40, marginBottom: 40}}>
+            <View style={styles.subView}>
               <TextInputFunc
                 textType="medium"
                 text={CONST.TEXT_NAME}
@@ -115,6 +115,7 @@ class SignUpScreen extends Component {
                 onChange={(changedText) => {
                   this.setState({contact: changedText});
                 }}
+                kType= 'numeric'
                 value={this.state.contact}
               />
               <TextInputFunc
@@ -137,8 +138,7 @@ class SignUpScreen extends Component {
                 value={this.state.cnfpassword}
                 secure={true}
               />
-            </View>
-            <ButtonFunc
+              <ButtonFunc
               text={'SignUp'}
               wid="60%"
               fontsize={16}
@@ -146,6 +146,8 @@ class SignUpScreen extends Component {
                 this.setData();
               }}
             />
+            </View>
+            
           </KeyboardAvoidingView>
         </ScrollView>
       </SafeAreaView>
@@ -166,27 +168,4 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  smalltext: {
-    marginTop: 20,
-    color: 'slategray',
-    alignSelf: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-  medium: {
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);

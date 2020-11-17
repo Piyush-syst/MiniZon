@@ -21,7 +21,7 @@ import Dropdown from '../../components/Dropdown';
 //import ImagePickers from '../../components/ImagePicker';
 //import uploadImage from '../../utils/Helper/uploadImage';
 import {createProduct} from '../../actions/CreateProductAction';
-
+import styles from './styles';
 
 class CreateNewItem extends Component {
   constructor(props) {
@@ -105,10 +105,10 @@ class CreateNewItem extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue'}}>
+      <SafeAreaView style={styles.safeView}>
         <Header centerText="MiniZon" />
         <ScrollView
-          style={{marginBottom: 20}}
+          style={styles.scrollView}
           contentInsetAdjustmentBehavior="automatic"
           bounces={false}
           overScrollMode={'always'}>
@@ -124,7 +124,7 @@ class CreateNewItem extends Component {
                 }}
                 value={this.state.productName}
               />
-              <View style={{flexDirection: 'row'}}>
+              <View style={styles.flexRow}>
                 <Dropdown
                   optionList={['Gender', 'Male', 'Female']}
                   defaultValue="Gender"
@@ -195,16 +195,16 @@ class CreateNewItem extends Component {
                 }}
                 value={this.state.quantity}
               />
-              <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+              <Text style={styles.sideHeadingText}>
                 {CONST.ADD_IMAGES}
               </Text>
-              <View style={{flexDirection: 'row', marginTop: 30}}>
+              <View style={styles.listView}>
                 <TouchableOpacity
                   onPress={() => {
                     this.handlePhotoUpload();
                   }}>
                   <Image
-                    style={{height: 50, width: 50, tintColor: 'skyblue'}}
+                    style={styles.pickerButtonImage}
                     source={CONST.PLUS_ICON_IMAGE}
                   />
                 </TouchableOpacity>
@@ -217,26 +217,16 @@ class CreateNewItem extends Component {
                         onPress={() => {
                           this.removeImage(index);
                         }}
-                        style={{
-                          position: 'absolute',
-                          zIndex: 1,
-                          right: 0,
-                          top: 0,
-                        }}>
+                        style={styles.topButton}>
                         <Image
                           source={CONST.CROSS_ICON_IMAGE}
-                          style={{
-                            height: 20,
-                            width: 20,
-                            tintColor: 'black',
-                            transform: [{rotate: '45deg'}],
-                          }}
+                          style={styles.topButtonImage}
                         />
                       </TouchableOpacity>
 
                       <Image
                         source={{uri: item.img}}
-                        style={{height: 50, width: 50}}
+                        style={styles.pickedImage}
                       />
                     </View>
                   )}
@@ -295,27 +285,5 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  smalltext: {
-    marginTop: 20,
-    color: 'slategray',
-    alignSelf: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-  medium: {
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+
 export default connect(mapStateToProps, mapDispatchToProps)(CreateNewItem);

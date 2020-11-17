@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import * as CONST from '../utils/Constants/StringConstants';
 export default function Header(props) {
-  const {centerText, navProp, isIconRightVisible, isIconLeftVisible} = props;
+  const {centerText, navProp, isIconRightVisible, isIconLeftVisible, isIconBackVisible} = props;
   return (
     <View
       style={{
@@ -21,6 +21,17 @@ export default function Header(props) {
             <Image
               style={{height: 30, width: 30}}
               source={CONST.DASHBOARD_ICON_IMAGE}
+            />
+          </TouchableOpacity>
+        )}
+        {isIconBackVisible && (
+          <TouchableOpacity
+            onPress={() => {
+              navProp.pop();
+            }}>
+            <Image
+              style={{height: 30, width: 30}}
+              source={CONST.BACK_ICON_IMAGE}
             />
           </TouchableOpacity>
         )}

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
+import styles from './styles';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
 import * as CONST from '../../utils/Constants/StringConstants';
@@ -48,9 +49,9 @@ class CartScreen extends Component {
   render() {
    
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'skyblue'}}>
+      <SafeAreaView style={styles.safeView}>
         <Header centerText={CONST.HEADER_TEXT} />
-        <View style={{backgroundColor: 'linen', flex: 1}}>
+        <View style={styles.view}>
           <FlatList /*numColumns={2}*/
           
             data={this.state.items}           
@@ -58,50 +59,31 @@ class CartScreen extends Component {
 
               <>
                 <View
-                  style={{
-                    height: 160,
-                    borderWidth: 1,
-                    borderRadius: 15,
-                    borderColor: 'black',
-                    margin: 5,
-                    zIndex: 1,
-                    backgroundColor: 'whitesmoke',
-                    flexDirection: 'row',
-                    paddingHorizontal: 10,
-                  }}>
+                  style={styles.viewList}>
                   <Image
-                    style={{
-                      height: 140,
-                      width: 100,
-                      padding: 10,
-                      margin: 5,
-                    }}
+                    style={styles.itemImage}
                     source={{
                       uri: item.items.imgUrl,
                     }}
                   />
 
-                  <View style={{paddingLeft: 10, flex:1}}>                    
+                  <View style={styles.itemSubView}>                    
                       <Text
-                        style={{
-                          fontWeight: 'bold',
-                          fontSize: 18,
-                          paddingVertical: 5,
-                        }}>
+                        style={styles.itemHeadText}>
                         {item.items.name}
                       </Text>
-                      <Text numberOfLines={2} style={{fontSize: 16, flexWrap: 'wrap', }}>
+                      <Text numberOfLines={2} style={styles.itemDescriptionText}>
                         {item.items.description}
                       </Text>
-                      <Text style={{fontSize: 16}}>{item.items.brand}</Text>
-                      <Text style={{fontSize: 16}}>
+                      <Text style={styles.itemText}>{item.items.brand}</Text>
+                      <Text style={styles.itemText}>
                         Quantity:{item.quantity}
                       </Text>
-                      <Text style={{fontSize: 16}}>{item.items.price} Rs</Text>                 
+                      <Text style={styles.itemText}>{item.items.price} Rs</Text>                 
                   </View>
-                  <View style={{flex:1}}>
+                  <View style={styles.flexFull}>
                     <View
-                      style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                      style={styles.itemButtonView}>
                       <ButtonFunc
                         text={'-'}
                         wid="45%"
@@ -112,12 +94,7 @@ class CartScreen extends Component {
                         }}
                       />
                       <Text
-                        style={{
-                          padding: 10,
-                          fontSize: 16,
-                          fontWeight: 'bold',
-                          marginTop: 20,
-                        }}>
+                        style={styles.itemQuantityText}>
                         {item.quantity}
                       </Text>
                       <ButtonFunc
@@ -143,6 +120,7 @@ class CartScreen extends Component {
             )}
             keyExtractor={(item, index) => index}
           />
+          <View style={styles.buttonView}>
           <ButtonFunc
             text={CONST.BUTTON_TEXT_CHECKOUT}
             wid="70%"
@@ -153,6 +131,7 @@ class CartScreen extends Component {
               });
             }}
           />
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -172,18 +151,4 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-});
-
 export default connect(mapStateToProps, mapDispatchToProps)(CartScreen);

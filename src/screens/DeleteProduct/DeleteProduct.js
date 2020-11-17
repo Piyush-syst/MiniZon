@@ -16,6 +16,7 @@ import Header from '../../components/header';
 import {deleteProductAction} from  '../../actions/DeleteProductAction';
 import {fetchAllProducts} from '../../actions/ProductFetchAction';
 import * as CONST from '../../utils/Constants/StringConstants';
+import styles from './styles';
 class DeleteProduct extends Component {
   componentDidMount() {
     this.props.getListAction();   
@@ -28,43 +29,39 @@ class DeleteProduct extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{backgroundColor: 'skyblue', flex: 1}}>
+      <SafeAreaView style={styles.safeView}>
         <Header
           centerText={CONST.HEADER_TEXT}
           navProp={this.props.navigation}
         />
         <View style={styles.view}>
           <FlatList
-            style={{flex: 1}}
+            style={styles.flexFull}
             //numColumns={2}
             data={this.props.items}
             renderItem={({item, index}) => (
               <View style={styles.ViewList}>               
-                <View style={{height: 140, width: 100, padding: 10, margin: 5}}>
+                <View style={styles.subView}>
                   <Image
-                    style={{flex: 1}}
+                    style={styles.flexFull}
                     source={{
                       uri:
                        item.imgUrl
                     }}
                   />
                 </View>
-                <View style={{paddingLeft: 10,flex:1}}>
-                  <View style={{flex: 1,}}>
+                <View style={styles.itemView}>
+                  <View style={styles.flexFull}>
                     <Text
-                      style={{
-                        fontWeight: 'bold',
-                        fontSize: 18,
-                        paddingVertical: 10,
-                      }}>
+                      style={styles.itemHeadText}>
                       {item.name}
                     </Text>
-                    <Text numberOfLines={2} style={{fontSize: 16,flexWrap: 'wrap', }}>{item.description}</Text>
-                    <Text style={{fontSize: 16}}>{item.brand}</Text>
+                    <Text numberOfLines={2} style={styles.descriptionText}>{item.description}</Text>
+                    <Text style={styles.itemText}>{item.brand}</Text>
                   </View>
-                  <Text style={{fontSize: 16}}>{item.price} Rs</Text>
+                  <Text style={styles.itemText}>{item.price} Rs</Text>
                 </View>
-                <View style={{flex:1}}>
+                <View style={styles.flexFull}>
                 <ButtonFunc
                         text={'Delete Item'}
                         wid="100%"
@@ -115,36 +112,4 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 100,
-    alignItems: 'center',
-  },
-  view: {
-    flex: 1,
-    backgroundColor: 'linen',
-  },
-  ViewList: {
-    height: 160,
-    borderWidth: 1,
-    borderRadius: 15,
-    borderColor: 'black',
-    margin: 5,
-    zIndex: 1,
-    backgroundColor: 'whitesmoke',
-    flexDirection: 'row',
-    padding: 10,
-  },
-  halfFlex: {
-    flex: 1,
-  },
-  wrapper: {
-    height: 170,
-    width: 170,
-  },
-});
-
 export default connect(mapStateToProps, mapDispatchToProps)(DeleteProduct);
