@@ -68,3 +68,6 @@ export const GET_PASSWORD = 'Get Password';
 export const EDIT_PROFILE = 'Edit Profile';
 export const UPDATE_USER = 'Update User';
 export const USER_DATA_UPDATED = 'User data updated';
+export const BUTTON_TEXT_ADD = 'Add Address';
+export const TEXT_ADDRESS = 'Address';
+export const LABEL_PLACEHOLDER_ADDRESS = 'Please Enter Your Address';

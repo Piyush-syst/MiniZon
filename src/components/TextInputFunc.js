@@ -11,6 +11,7 @@ export default function TextInputFunc(props) {
     lowerText,
     secure,
     kType,
+    mLine,
   } = props;
   //   const {text, onButtonPress} = props;
   return (
@@ -34,6 +35,7 @@ export default function TextInputFunc(props) {
         secureTextEntry={secure ? secure : false}
         value={value}
         keyboardType= {kType? kType : 'default'}
+        multiline= {mLine? mLine: false}
       />
       <Text>{lowerText}</Text>
     </View>

@@ -86,7 +86,9 @@ class CheckOut extends Component {
             text={CONST.BUTTON_TEXT_PROCEEDTOPAY}
             wid="70%"
             fontsize={14}
-            onButtonPress={() => {}}
+            onButtonPress={() => {
+              this.props.navigation.navigate('FinalScreen');
+            }}
           />
         </View>
       </SafeAreaView>
