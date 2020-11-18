@@ -65,3 +65,6 @@ export const GOT_ALL_ITEMS = 'Got all items';
 export const PRODUCT_DELETED = 'Product deleted';
 export const UPDATE_PRODUCT = 'Update Product';
 export const GET_PASSWORD = 'Get Password';
+export const EDIT_PROFILE = 'Edit Profile';
+export const UPDATE_USER = 'Update User';
+export const USER_DATA_UPDATED = 'User data updated';

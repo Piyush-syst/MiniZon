@@ -30,6 +30,7 @@ class WomensWear extends Component {
           isIconLeftVisible
           isIconRightVisible
           navProp={this.props.navigation}
+          itemsCount= {this.props.count}
         />
         <View style={styles.view}>
           <FlatList
@@ -73,9 +74,10 @@ class WomensWear extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  const {ProductFetchReducer} = state;
+  const {ProductFetchReducer, CartUpdateReducer} = state;
   return {
     items: ProductFetchReducer.womensWearData,
+    count: CartUpdateReducer.numberOfItems,
   };
 };
 

@@ -26,39 +26,27 @@ class SignUpScreen extends Component {
       cnfpassword: '',
     };
   }
-  emptyFields() {
-    this.state.name = '';
-    this.state.password = '';
-    this.state.contact = '';
-    this.state.email = '';
-    this.state.cnfpassword = '';
-  }
 
   async setData() {
     var phoneno = /^\d{10}$/;
+    let isNumberValid = phoneno.test(this.state.contact) 
+    const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+       let isValid = pattern.test(this.state.email) 
     if (this.state.name == '' || this.state.name == ' ') {
-      alert('Name must be filled out');
-      this.emptyFields();
+      alert('Name must be filled out');     
     } else if (this.state.email == '' || this.state.email == ' ') {
-      alert('Email must be filled out');
-      this.emptyFields();
+      alert('Email must be filled out');     
     } else if (this.state.contact == '' || this.state.contact == ' ') {
-      alert('Contact must be filled out');
-      this.emptyFields();
+      alert('Contact must be filled out');      
     } else if (this.state.password == '' || this.state.password == ' ') {
-      alert('Password must be filled out');
-      this.emptyFields();
+      alert('Password must be filled out');      
     } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
       alert('Password must be confirmed');
-      this.emptyFields();
-    } //else if (this.state.contact) {
-      // if (this.inputtext.value.match(phoneno)) {
-      // } 
-      // else {
-      //   alert('Please Enter 10 digits in contact number');
-      //   this.emptyFields();
-      // }} 
-      else if (this.state.password != this.state.cnfpassword) {
+    } else if (!isNumberValid) {
+      alert('Please enter valid contact number');
+      } else if (!isValid) {
+        alert('Enter a valid E-mail');
+      } else if (this.state.password != this.state.cnfpassword) {
       alert("Passwords Doesn't Match");
     } else {
       this.props.signUpAction(
@@ -72,7 +60,6 @@ class SignUpScreen extends Component {
   componentDidUpdate(prevprops) {
     if (this.props != prevprops) {
       if (this.props.status) {
-        console.warn('Success');
         this.props.navigation.navigate('Login');
       }
     }

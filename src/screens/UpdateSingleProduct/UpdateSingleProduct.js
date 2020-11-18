@@ -49,25 +49,31 @@ class UpdateSingleProduct extends Component {
     this.setState({downloadUrls: temp});
   }
   async setData() {
-    // if (this.state.name == '' || this.state.name == ' ') {
-    //   alert('Name must be filled out');
-    // } else if (this.state.email == '' || this.state.email == ' ') {
-    //   alert('Email must be filled out');
-    // } else if (this.state.contact == '' || this.state.contact == ' ') {
-    //   alert('Contact must be filled out');
-    // } else if (this.state.password == '' || this.state.password == ' ') {
-    //   alert('Password must be filled out');
-    // } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
-    //   alert('Password must be confirmed');
-    // } else if (this.state.password != this.state.cnfpassword) {
-    //   alert("Passwords Doesn't Match");
-    // } else {
-      // let count = 1;
-      // this.state.source.forEach((element) => {
-      //   uploadImage(element, this.state.productName + count++ + '.jpg');
-      // });
-      // console.warn(this.state.uri);
-      // const downloadurl = await uploadImage(this.state.uri, count);
+    const pattern = /^\d+$/;
+    isPriceValid = pattern.test(this.state.price) ;
+    isQuantityValid = pattern.test(this.state.quantity);
+    if (this.state.productName == '' || this.state.productName == ' ') {
+      alert('Name must be filled out');
+    } else if (this.state.description == '' || this.state.description == ' ') {
+      alert('Description must be filled out');
+    } else if (this.state.price == '' || this.state.price == ' ') {
+      alert('Price must be filled out');
+    } else if (this.state.quantity == '' || this.state.quantity == ' ') {
+      alert('Quantity must be filled out');
+    } else if (this.state.gender == '' || this.state.gender == ' ' || this.state.gender == 'Gender') {
+      alert('Gender must be selected');
+     } 
+     else if (this.state.size == '' || this.state.size == ' '|| this.state.size == 'Sizes') {
+      alert('Size must be selected');
+     } else if (this.state.category == '' || this.state.category == ' '|| this.state.category == 'Category') {
+      alert('Category must be selected');
+     } else if (this.state.brand == '' || this.state.brand == ' '|| this.state.gender == 'Brand') {
+      alert('Brand must be selected');
+     } else if (!isPriceValid) {
+      alert('Please enter valid Price');
+      } else if (!isQuantityValid) {
+        alert('Enter a valid Quantity');
+      }else{
       this.props.UpdateProductAction(
        // this.state.downloadUrls,
        this.state.id,
@@ -81,7 +87,8 @@ class UpdateSingleProduct extends Component {
         this.state.size,
         //{...this.state},
       );
-   // }
+      this.props.navigation.pop();
+   }
   }
 
   removeImage(index) {

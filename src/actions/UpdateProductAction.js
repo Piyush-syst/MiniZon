@@ -11,8 +11,11 @@ export function updateProduct(
   description,
   size,
 ) {
-    console.warn(id, name);
+  
   return (dispatch) => {
+    dispatch({
+      type: CONST.START_LOADER,
+    });
     firestore()
       .collection('items')
       .doc(id)
@@ -28,6 +31,9 @@ export function updateProduct(
   })
   .then(() => {
     console.log('User updated!');
+  });
+  dispatch({
+    type: CONST.STOP_LOADER,
   });
   };
 }

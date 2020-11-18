@@ -20,8 +20,8 @@ export default styles = StyleSheet.create({
         fontSize: 16
       },
       image:{
-        height: 200, 
-        width: '90%', 
+        height: 180, 
+        width: '80%', 
         tintColor: 'dodgerblue'
     },
     subView:{

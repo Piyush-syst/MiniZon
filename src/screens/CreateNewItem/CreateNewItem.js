@@ -48,20 +48,32 @@ class CreateNewItem extends Component {
   //   this.setState({downloadUrls: temp});
   // }
   async setData() {
-    // if (this.state.name == '' || this.state.name == ' ') {
-    //   alert('Name must be filled out');
-    // } else if (this.state.email == '' || this.state.email == ' ') {
-    //   alert('Email must be filled out');
-    // } else if (this.state.contact == '' || this.state.contact == ' ') {
-    //   alert('Contact must be filled out');
-    // } else if (this.state.password == '' || this.state.password == ' ') {
-    //   alert('Password must be filled out');
-    // } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
-    //   alert('Password must be confirmed');
-    // } else if (this.state.password != this.state.cnfpassword) {
-    //   alert("Passwords Doesn't Match");
-    // }
-    // else {
+    const pattern = /^\d+$/;
+    isPriceValid = pattern.test(this.state.price) ;
+    isQuantityValid = pattern.test(this.state.quantity);
+    if (this.state.productName == '' || this.state.productName == ' ') {
+      alert('Name must be filled out');
+    } else if (this.state.description == '' || this.state.description == ' ') {
+      alert('Description must be filled out');
+    } else if (this.state.price == '' || this.state.price == ' ') {
+      alert('Price must be filled out');
+    } else if (this.state.quantity == '' || this.state.quantity == ' ') {
+      alert('Quantity must be filled out');
+    } else if (this.state.gender == '' || this.state.gender == ' ' || this.state.gender == 'Gender') {
+      alert('Gender must be selected');
+     } 
+     else if (this.state.size == '' || this.state.size == ' '|| this.state.size == 'Sizes') {
+      alert('Size must be selected');
+     } else if (this.state.category == '' || this.state.category == ' '|| this.state.category == 'Category') {
+      alert('Category must be selected');
+     } else if (this.state.brand == '' || this.state.brand == ' '|| this.state.gender == 'Brand') {
+      alert('Brand must be selected');
+     } else if (!isPriceValid) {
+      alert('Please enter valid Price');
+      } else if (!isQuantityValid) {
+        alert('Enter a valid Quantity');
+      }
+    else {
     //   let count = 1;
     // let downloadUrl = [];
     // downloadUrl = await uploadImage(
@@ -82,7 +94,7 @@ class CreateNewItem extends Component {
       this.state.size,
       //  {...this.state},
     );
-    // }
+  }
   }
 
   removeImage(index) {

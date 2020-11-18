@@ -6,7 +6,7 @@ import * as CONST from '../../utils/Constants/StringConstants';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/CommonAction';
 import styles from './styles';
-class DashboardScreen extends Component {
+class FinalScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.safeView}>
@@ -53,11 +53,7 @@ class DashboardScreen extends Component {
             wid="70%"
             fontsize={14}
             onButtonPress={() => {
-              this.props.logoutAction();
-              this.props.navigation.reset({
-                index: 0,
-                routes: [{name: 'AuthStack'}],
-              });
+
             }}
           />
           </View>
@@ -82,5 +78,5 @@ const mapDispatchToProps = (dispatch, nextProps) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FinalScreen);
 

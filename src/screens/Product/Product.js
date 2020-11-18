@@ -45,6 +45,7 @@ class Product extends Component {
           isIconBackVisible
           isIconRightVisible
           navProp={this.props.navigation}
+          itemsCount= {this.props.count}
         />
         <View style={styles.view}>
           <Image
@@ -124,6 +125,7 @@ const mapStateToProps = (state) => {
   const {CartUpdateReducer} = state;
   return {
     items: CartUpdateReducer.cartData,
+    count: CartUpdateReducer.numberOfItems,
   };
 };
 

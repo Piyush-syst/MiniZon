@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, TouchableOpacity} from 'react-native';
 import * as CONST from '../utils/Constants/StringConstants';
 export default function Header(props) {
-  const {centerText, navProp, isIconRightVisible, isIconLeftVisible, isIconBackVisible} = props;
+  const {centerText, navProp, isIconRightVisible, isIconLeftVisible, isIconBackVisible, itemsCount} = props;
   return (
     <View
       style={{
@@ -50,6 +50,13 @@ export default function Header(props) {
             onPress={() => {
               navProp.navigate('Cart');
             }}>
+              <Text style={{fontSize: 14, 
+              zIndex: 1,
+              position: 'absolute',
+              right: 0,
+              top: 0,}}>
+                 {itemsCount? itemsCount: 0}
+                 </Text>
             <Image
               style={{height: 30, width: 30}}
               source={CONST.CART_ICON_IMAGE}

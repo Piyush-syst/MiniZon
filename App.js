@@ -32,6 +32,7 @@ import UpdateSingleProduct from './src/screens/UpdateSingleProduct/UpdateSingleP
 import DeleteProduct from './src/screens/DeleteProduct/DeleteProduct';
 import ViewProduct from './src/screens/ViewProducts/ViewProducts';
 import Product from './src/screens/Product/Product';
+import EditUser from './src/screens/EditUser/EditUser'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -93,6 +94,7 @@ class App extends Component {
           <Stack.Screen name="Cart" component={CartScreen} />
           <Stack.Screen name="CheckOut" component={CheckOut} />
           <Stack.Screen name="Product" component={Product} />
+          <Stack.Screen name="EditUser" component={EditUser} />
         </Stack.Navigator>
       );
     };
