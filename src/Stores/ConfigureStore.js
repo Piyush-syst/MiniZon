@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import promise from './Promise';
 import reducer from '../reducers';
 export default function ConfigureStore(onCompletion) {
-  const enhancer = compose(applyMiddleware(thunk, promise) );
+  const enhancer = compose(applyMiddleware(thunk, promise));
 
   const store = createStore(reducer, enhancer);
   return store;

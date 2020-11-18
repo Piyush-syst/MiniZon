@@ -24,28 +24,40 @@ class SignUpScreen extends Component {
       email: '',
       password: '',
       cnfpassword: '',
+      warnTextName: '',
+      warnTextContact: '',
+      warnTextEmail: '',
+      warnTextPassword: '',
+      warnTextCnfPassword: '',
     };
   }
 
   async setData() {
+    this.setState({
+      warnTextName: '',
+      warnTextPassword: '',
+      warnTextContact: '',
+      warnTextEmail: '',
+      warnTextCnfPassword: '',
+    });
     var phoneno = /^\d{10}$/;
     let isNumberValid = phoneno.test(this.state.contact);
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     let isValid = pattern.test(this.state.email);
     if (this.state.name == '' || this.state.name == ' ') {
-      alert('Name must be filled out');
+      this.setState({warnTextName: 'Please Fill the Username'});
     } else if (this.state.email == '' || this.state.email == ' ') {
-      alert('Email must be filled out');
+      this.setState({warnTextEmail: 'Please Fill the Email Address'});
     } else if (this.state.contact == '' || this.state.contact == ' ') {
-      alert('Contact must be filled out');
+      this.setState({warnTextContact: 'Please Fill the Contact'});
     } else if (this.state.password == '' || this.state.password == ' ') {
-      alert('Password must be filled out');
+      this.setState({warnTextPassword: 'Please Fill the Password'});
     } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
-      alert('Password must be confirmed');
+      this.setState({warnTextCnfPassword: 'Password must be confirmed'});
     } else if (!isNumberValid) {
-      alert('Please enter valid contact number');
+      this.setState({warnTextContact: 'Please enter valid contact number'});
     } else if (!isValid) {
-      alert('Enter a valid E-mail');
+      this.setState({warnTextEmail: 'Enter a valid E-mail'});
     } else if (this.state.password != this.state.cnfpassword) {
       alert("Passwords Doesn't Match");
     } else {
@@ -82,6 +94,7 @@ class SignUpScreen extends Component {
                 onChange={(changedText) => {
                   this.setState({name: changedText});
                 }}
+                lowerText={this.state.warnTextName}
                 value={this.state.name}
               />
               <TextInputFunc
@@ -91,6 +104,7 @@ class SignUpScreen extends Component {
                 onChange={(changedText) => {
                   this.setState({email: changedText});
                 }}
+                lowerText={this.state.warnTextEmail}
                 value={this.state.email}
               />
               <TextInputFunc
@@ -100,6 +114,7 @@ class SignUpScreen extends Component {
                 onChange={(changedText) => {
                   this.setState({contact: changedText});
                 }}
+                lowerText={this.state.warnTextContact}
                 kType="numeric"
                 value={this.state.contact}
               />
@@ -110,6 +125,7 @@ class SignUpScreen extends Component {
                 onChange={(changedText) => {
                   this.setState({password: changedText});
                 }}
+                lowerText={this.state.warnTextPassword}
                 value={this.state.password}
                 secure={true}
               />
@@ -122,6 +138,7 @@ class SignUpScreen extends Component {
                 }}
                 value={this.state.cnfpassword}
                 secure={true}
+                lowerText={this.state.warnTextCnfPassword}
               />
               <ButtonFunc
                 text={'SignUp'}

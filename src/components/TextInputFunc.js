@@ -37,7 +37,7 @@ export default function TextInputFunc(props) {
         keyboardType={kType ? kType : 'default'}
         multiline={mLine ? mLine : false}
       />
-      <Text>{lowerText}</Text>
+      <Text style={{color: 'red'}}>{lowerText}</Text>
     </View>
   );
 }

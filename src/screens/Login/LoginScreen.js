@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './styles';
+import NetInfo from '@react-native-community/netinfo';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
@@ -10,13 +11,33 @@ import {login} from '../../actions/CommonAction';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
+    NetInfo.fetch().then((state) => {
+      if (!state.isConnected) {
+        alert('No internet connection');
+      }
+    });
     this.state = {
       username: '',
       password: '',
+      warnText: '',
+      warnTextPass: '',
     };
   }
+  componentDidMount() {
+    if (this.props.adminLoginStatus) {
+      this.props.navigation.reset({
+        index: 0,
+        routes: [{name: 'AdminPanel'}],
+      });
+    } else if (this.props.status) {
+      this.props.navigation.reset({
+        index: 0,
+        routes: [{name: 'MainStack'}],
+      });
+    }
+  }
   componentDidUpdate(prevprops) {
-    if (this.props != prevprops) {
+    if (this.props !== prevprops) {
       if (this.props.adminLoginStatus) {
         this.props.navigation.reset({
           index: 0,
@@ -35,14 +56,15 @@ class LoginScreen extends Component {
     }
   }
   auth() {
+    this.setState({warnText: '', warnTextPass: ''});
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     let isValid = pattern.test(this.state.username);
     if (this.state.username == '' || this.state.username == ' ') {
-      alert('Email must be filled out');
+      this.setState({warnText: 'Please Fill the Username'});
     } else if (this.state.password == '' || this.state.password == ' ') {
-      alert('Password must be filled out');
+      this.setState({warnTextPass: 'Please Fill the Password'});
     } else if (!isValid) {
-      alert('Enter a valid E-mail address');
+      this.setState({warnText: 'Enter a valid E-mail address'});
     } else {
       this.props.loginAction(this.state.username, this.state.password);
     }
@@ -64,6 +86,7 @@ class LoginScreen extends Component {
               onChange={(changedText) => {
                 this.setState({username: changedText});
               }}
+              lowerText={this.state.warnText}
               value={this.state.username}
             />
             <TextInputFunc
@@ -73,6 +96,7 @@ class LoginScreen extends Component {
               onChange={(changedText) => {
                 this.setState({password: changedText});
               }}
+              lowerText={this.state.warnTextPass}
               value={this.state.password}
               secure={true}
             />
