@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  ImageBackground,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './styles';
 import TextInputFunc from '../../components/TextInputFunc';
@@ -43,15 +36,14 @@ class LoginScreen extends Component {
   }
   auth() {
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-       let isValid = pattern.test(this.state.username) 
+    let isValid = pattern.test(this.state.username);
     if (this.state.username == '' || this.state.username == ' ') {
       alert('Email must be filled out');
     } else if (this.state.password == '' || this.state.password == ' ') {
       alert('Password must be filled out');
     } else if (!isValid) {
       alert('Enter a valid E-mail address');
-    } 
-    else {
+    } else {
       this.props.loginAction(this.state.username, this.state.password);
     }
   }
@@ -88,8 +80,7 @@ class LoginScreen extends Component {
               onPress={() => {
                 this.props.navigation.navigate('ForgotPassword');
               }}>
-              <Text
-                style={styles.buttonText}>
+              <Text style={styles.buttonText}>
                 {CONST.HEAD_TEXT_FORGOTPASSWORD}
               </Text>
             </TouchableOpacity>

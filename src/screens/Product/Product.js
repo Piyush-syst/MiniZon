@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  SafeAreaView,
-} from 'react-native';
+import {StyleSheet, View, Text, Image, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './styles';
 import ButtonFunc from '../../components/ButtonFunc';
@@ -45,7 +39,7 @@ class Product extends Component {
           isIconBackVisible
           isIconRightVisible
           navProp={this.props.navigation}
-          itemsCount= {this.props.count}
+          itemsCount={this.props.count}
         />
         <View style={styles.view}>
           <Image
@@ -56,10 +50,7 @@ class Product extends Component {
           />
 
           <View style={styles.subView}>
-            <Text
-              style={styles.headText}>
-              {this.state.product.name}
-            </Text>
+            <Text style={styles.headText}>{this.state.product.name}</Text>
             <Text style={styles.text}>{this.state.product.description}</Text>
             <Text style={styles.text}>{this.state.product.brand}</Text>
 
@@ -74,10 +65,7 @@ class Product extends Component {
                 this.IncreamentItem();
               }}
             />
-            <Text
-              style={styles.counterText}>
-              {this.state.quantity}
-            </Text>
+            <Text style={styles.counterText}>{this.state.quantity}</Text>
             <ButtonFunc
               text={'-'}
               wid="20%"
@@ -128,6 +116,5 @@ const mapStateToProps = (state) => {
     count: CartUpdateReducer.numberOfItems,
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

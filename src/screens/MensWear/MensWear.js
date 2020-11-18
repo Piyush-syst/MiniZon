@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   TouchableWithoutFeedback,
@@ -8,20 +7,15 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import TextInputFunc from '../../components/TextInputFunc';
-import ButtonFunc from '../../components/ButtonFunc';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {connect} from 'react-redux';
 import Header from '../../components/header';
 import {fetchProduct} from '../../actions/ProductFetchAction';
 import * as CONST from '../../utils/Constants/StringConstants';
 import styles from './styles';
 class MensWear extends Component {
-
   componentDidMount() {
     this.props.getListAction();
   }
-
 
   render() {
     return (
@@ -31,7 +25,7 @@ class MensWear extends Component {
           isIconLeftVisible
           isIconRightVisible
           navProp={this.props.navigation}
-          itemsCount= {this.props.count}
+          itemsCount={this.props.count}
         />
         <View style={styles.view}>
           <FlatList
@@ -44,26 +38,23 @@ class MensWear extends Component {
                 onPress={() =>
                   this.props.navigation.navigate('Product', {item})
                 }>
-                  <View style={styles.ViewList}>
-                <View style={styles.itemView}>
-                  <Image
-                    style={styles.flexFull}
-                    source={{
-                      uri: item.imgUrl,
-                    }}
-                  />
-                </View>
-                <View style={styles.itemSubView}>
-                  <View style={styles.flexFull}>
-                    <Text
-                      style={styles.itemHeadText}>
-                      {item.name}
-                    </Text>
-                    <Text style={styles.itemText}>{item.description}</Text>
-                    <Text style={styles.itemText}>{item.brand}</Text>
+                <View style={styles.ViewList}>
+                  <View style={styles.itemView}>
+                    <Image
+                      style={styles.flexFull}
+                      source={{
+                        uri: item.imgUrl,
+                      }}
+                    />
                   </View>
-                  <Text style={styles.itemText}>{item.price} Rs</Text>
-                </View>
+                  <View style={styles.itemSubView}>
+                    <View style={styles.flexFull}>
+                      <Text style={styles.itemHeadText}>{item.name}</Text>
+                      <Text style={styles.itemText}>{item.description}</Text>
+                      <Text style={styles.itemText}>{item.brand}</Text>
+                    </View>
+                    <Text style={styles.itemText}>{item.price} Rs</Text>
+                  </View>
                 </View>
               </TouchableWithoutFeedback>
             )}
@@ -75,7 +66,7 @@ class MensWear extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  const {ProductFetchReducer, CartUpdateReducer } = state;
+  const {ProductFetchReducer, CartUpdateReducer} = state;
   return {
     items: ProductFetchReducer.mensWearData,
     count: CartUpdateReducer.numberOfItems,

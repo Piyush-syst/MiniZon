@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Image, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
@@ -27,10 +21,7 @@ class AdminControlPanel extends Component {
       <SafeAreaView style={styles.safeView}>
         <Header centerText={CONST.HEADER_TEXT} />
         <View style={styles.view}>
-          <Text
-            style={styles.headText}>
-            {CONST.WELCOME_ADMIN}
-          </Text>
+          <Text style={styles.headText}>{CONST.WELCOME_ADMIN}</Text>
           <View style={styles.subView}>
             <View style={styles.flexFull}>
               <TouchableOpacity
@@ -42,23 +33,20 @@ class AdminControlPanel extends Component {
                   style={styles.image}
                   source={CONST.CREATE_PRODUCT_ICON_IMAGE}
                 />
-                <Text style={styles.text}>
-                  Create Product
-                </Text>
+                <Text style={styles.text}>Create Product</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.flexFull}>
-              <TouchableOpacity style={styles.alignCenter}
-              onPress={() => {
-                this.props.navigation.navigate('UpdateProduct');
-              }}>
+              <TouchableOpacity
+                style={styles.alignCenter}
+                onPress={() => {
+                  this.props.navigation.navigate('UpdateProduct');
+                }}>
                 <Image
                   style={styles.image}
                   source={CONST.UPDATE_PRODUCT_ICON_IMAGE}
                 />
-                <Text style={styles.text}>
-                  Update Product
-                </Text>
+                <Text style={styles.text}>Update Product</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -73,9 +61,7 @@ class AdminControlPanel extends Component {
                   style={styles.image}
                   source={CONST.DELETE_PRODUCT_ICON_IMAGE}
                 />
-                <Text style={styles.text}>
-                  Delete Product
-                </Text>
+                <Text style={styles.text}>Delete Product</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.flexFull}>
@@ -88,9 +74,7 @@ class AdminControlPanel extends Component {
                   style={styles.image}
                   source={CONST.VIEW_LIST_ICON_IMAGE}
                 />
-                <Text style={styles.text}>
-                  View Products
-                </Text>
+                <Text style={styles.text}>View Products</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -99,7 +83,7 @@ class AdminControlPanel extends Component {
             wid="60%"
             fontsize={16}
             onButtonPress={() => {
-                this.props.logoutAction();
+              this.props.logoutAction();
               this.props.navigation.reset({
                 index: 0,
                 routes: [{name: 'AuthStack'}],
@@ -123,11 +107,10 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     FetchBrandAction: () => {
       dispatch(fetchBrands());
     },
-   logoutAction: () => {
+    logoutAction: () => {
       dispatch(logout());
     },
   };
 };
-
 
 export default connect(null, mapDispatchToProps)(AdminControlPanel);

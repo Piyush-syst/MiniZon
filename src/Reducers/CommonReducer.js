@@ -43,16 +43,16 @@ export default function (state = initialState, action) {
         ...state,
         signUpStatus: true,
       };
-      case CONST.USER_DATA_UPDATED:
+    case CONST.USER_DATA_UPDATED:
       return {
         ...state,
         userData: action.payload.userData,
       };
-      case CONST.LOGOUT:
-        return {
-          ...state,
-          loginStatus: false,
-        };
+    case CONST.LOGOUT:
+      return {
+        ...state,
+        loginStatus: false,
+      };
     default:
       return state;
   }

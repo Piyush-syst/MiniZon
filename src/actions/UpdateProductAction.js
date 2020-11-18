@@ -1,7 +1,7 @@
 import * as CONST from '../utils/Constants/StringConstants';
 import firestore from '@react-native-firebase/firestore';
 export function updateProduct(
-    id,
+  id,
   name,
   gender,
   category,
@@ -11,7 +11,6 @@ export function updateProduct(
   description,
   size,
 ) {
-  
   return (dispatch) => {
     dispatch({
       type: CONST.START_LOADER,
@@ -19,7 +18,7 @@ export function updateProduct(
     firestore()
       .collection('items')
       .doc(id)
-  .update({
+      .update({
         name: name,
         gender: gender,
         category: category,
@@ -28,12 +27,12 @@ export function updateProduct(
         quantity: quantity,
         description: description,
         size: size,
-  })
-  .then(() => {
-    console.log('User updated!');
-  });
-  dispatch({
-    type: CONST.STOP_LOADER,
-  });
+      })
+      .then(() => {
+        console.log('User updated!');
+      });
+    dispatch({
+      type: CONST.STOP_LOADER,
+    });
   };
 }

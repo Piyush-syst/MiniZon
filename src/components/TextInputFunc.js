@@ -34,8 +34,8 @@ export default function TextInputFunc(props) {
         }}
         secureTextEntry={secure ? secure : false}
         value={value}
-        keyboardType= {kType? kType : 'default'}
-        multiline= {mLine? mLine: false}
+        keyboardType={kType ? kType : 'default'}
+        multiline={mLine ? mLine : false}
       />
       <Text>{lowerText}</Text>
     </View>

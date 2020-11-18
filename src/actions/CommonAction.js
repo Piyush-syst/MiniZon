@@ -12,8 +12,8 @@ export function login(username, password) {
       .then((querySnapshot) => {
         if (querySnapshot.size > 0) {
           querySnapshot.forEach((querySnapshotItem) => {
-            const userData =querySnapshotItem.data();
-            userData["ID"] = querySnapshotItem.id;
+            const userData = querySnapshotItem.data();
+            userData.ID = querySnapshotItem.id;
             if (userData.password == password) {
               if (userData.isAdmin) {
                 dispatch({
@@ -83,42 +83,41 @@ export function updateUser(id, name, contact, email) {
     firestore()
       .collection('users')
       .doc(id)
-  .update({
-    name: name,
-    contact: contact,
-    email: email,
-  })
-  .then(() => {
-    console.log('User updated!');
-  });
+      .update({
+        name: name,
+        contact: contact,
+        email: email,
+      })
+      .then(() => {
+        console.log('User updated!');
+      });
     dispatch({
       type: CONST.STOP_LOADER,
     });
   };
 }
-export function getUserData(id)
-{  return (dispatch) => {
-  dispatch({
-    type: CONST.START_LOADER,
-  });
-  this.user = firestore()
+export function getUserData(id) {
+  return (dispatch) => {
+    dispatch({
+      type: CONST.START_LOADER,
+    });
+    this.user = firestore()
       .collection('users')
       .doc(id)
       .get()
-      .then(documentSnapshot => {
-    if (documentSnapshot.exists) {
-      const userData =documentSnapshot.data();
-      userData["ID"] = documentSnapshot.id;
-      dispatch({
-        type: CONST.USER_DATA_UPDATED,
-        payload: {userData},
+      .then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          const userData = documentSnapshot.data();
+          userData.ID = documentSnapshot.id;
+          dispatch({
+            type: CONST.USER_DATA_UPDATED,
+            payload: {userData},
+          });
+        }
       });
-    }
-  });
 
-  dispatch({
-    type: CONST.STOP_LOADER,
-  });
-};
-
+    dispatch({
+      type: CONST.STOP_LOADER,
+    });
+  };
 }

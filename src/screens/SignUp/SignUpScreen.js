@@ -29,24 +29,24 @@ class SignUpScreen extends Component {
 
   async setData() {
     var phoneno = /^\d{10}$/;
-    let isNumberValid = phoneno.test(this.state.contact) 
+    let isNumberValid = phoneno.test(this.state.contact);
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-       let isValid = pattern.test(this.state.email) 
+    let isValid = pattern.test(this.state.email);
     if (this.state.name == '' || this.state.name == ' ') {
-      alert('Name must be filled out');     
+      alert('Name must be filled out');
     } else if (this.state.email == '' || this.state.email == ' ') {
-      alert('Email must be filled out');     
+      alert('Email must be filled out');
     } else if (this.state.contact == '' || this.state.contact == ' ') {
-      alert('Contact must be filled out');      
+      alert('Contact must be filled out');
     } else if (this.state.password == '' || this.state.password == ' ') {
-      alert('Password must be filled out');      
+      alert('Password must be filled out');
     } else if (this.state.cnfpassword == '' || this.state.cnfpassword == ' ') {
       alert('Password must be confirmed');
     } else if (!isNumberValid) {
       alert('Please enter valid contact number');
-      } else if (!isValid) {
-        alert('Enter a valid E-mail');
-      } else if (this.state.password != this.state.cnfpassword) {
+    } else if (!isValid) {
+      alert('Enter a valid E-mail');
+    } else if (this.state.password != this.state.cnfpassword) {
       alert("Passwords Doesn't Match");
     } else {
       this.props.signUpAction(
@@ -68,9 +68,7 @@ class SignUpScreen extends Component {
     return (
       <SafeAreaView style={styles.safeView}>
         <Header centerText="MiniZon" />
-        <ScrollView
-          bounces={false}
-          >
+        <ScrollView bounces={false}>
           <KeyboardAvoidingView style={styles.view} behavior="position">
             <Text style={styles.headText}>Sign Up!!</Text>
             <Text style={styles.smalltext}>
@@ -102,7 +100,7 @@ class SignUpScreen extends Component {
                 onChange={(changedText) => {
                   this.setState({contact: changedText});
                 }}
-                kType= 'numeric'
+                kType="numeric"
                 value={this.state.contact}
               />
               <TextInputFunc
@@ -126,15 +124,14 @@ class SignUpScreen extends Component {
                 secure={true}
               />
               <ButtonFunc
-              text={'SignUp'}
-              wid="60%"
-              fontsize={16}
-              onButtonPress={() => {
-                this.setData();
-              }}
-            />
+                text={'SignUp'}
+                wid="60%"
+                fontsize={16}
+                onButtonPress={() => {
+                  this.setData();
+                }}
+              />
             </View>
-            
           </KeyboardAvoidingView>
         </ScrollView>
       </SafeAreaView>

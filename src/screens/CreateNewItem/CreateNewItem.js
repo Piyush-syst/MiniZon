@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   KeyboardAvoidingView,
@@ -28,9 +27,9 @@ class CreateNewItem extends Component {
     super(props);
     this.state = {
       productName: '',
-        source: [],
+      source: [],
       //  downloadUrls: [],
-        uri: '',
+      uri: '',
       gender: '',
       category: '',
       brand: '',
@@ -49,8 +48,8 @@ class CreateNewItem extends Component {
   // }
   async setData() {
     const pattern = /^\d+$/;
-    isPriceValid = pattern.test(this.state.price) ;
-    isQuantityValid = pattern.test(this.state.quantity);
+    const isPriceValid = pattern.test(this.state.price);
+    const isQuantityValid = pattern.test(this.state.quantity);
     if (this.state.productName == '' || this.state.productName == ' ') {
       alert('Name must be filled out');
     } else if (this.state.description == '' || this.state.description == ' ') {
@@ -59,42 +58,56 @@ class CreateNewItem extends Component {
       alert('Price must be filled out');
     } else if (this.state.quantity == '' || this.state.quantity == ' ') {
       alert('Quantity must be filled out');
-    } else if (this.state.gender == '' || this.state.gender == ' ' || this.state.gender == 'Gender') {
+    } else if (
+      this.state.gender == '' ||
+      this.state.gender == ' ' ||
+      this.state.gender == 'Gender'
+    ) {
       alert('Gender must be selected');
-     } 
-     else if (this.state.size == '' || this.state.size == ' '|| this.state.size == 'Sizes') {
+    } else if (
+      this.state.size == '' ||
+      this.state.size == ' ' ||
+      this.state.size == 'Sizes'
+    ) {
       alert('Size must be selected');
-     } else if (this.state.category == '' || this.state.category == ' '|| this.state.category == 'Category') {
+    } else if (
+      this.state.category == '' ||
+      this.state.category == ' ' ||
+      this.state.category == 'Category'
+    ) {
       alert('Category must be selected');
-     } else if (this.state.brand == '' || this.state.brand == ' '|| this.state.gender == 'Brand') {
+    } else if (
+      this.state.brand == '' ||
+      this.state.brand == ' ' ||
+      this.state.gender == 'Brand'
+    ) {
       alert('Brand must be selected');
-     } else if (!isPriceValid) {
+    } else if (!isPriceValid) {
       alert('Please enter valid Price');
-      } else if (!isQuantityValid) {
-        alert('Enter a valid Quantity');
-      }
-    else {
-    //   let count = 1;
-    // let downloadUrl = [];
-    // downloadUrl = await uploadImage(
-    //   this.state.source,
-    //   this.state.productName + count++,
-    // );
-    //this.setState({downloadUrls: downloadUrl});
-    //console.log(this.state.downloadUrls);
-    this.props.CreateProductAction(
-      // this.state.downloadUrls,
-      this.state.productName,
-      this.state.gender,
-      this.state.category,
-      this.state.brand,
-      this.state.price,
-      this.state.quantity,
-      this.state.description,
-      this.state.size,
-      //  {...this.state},
-    );
-  }
+    } else if (!isQuantityValid) {
+      alert('Enter a valid Quantity');
+    } else {
+      //   let count = 1;
+      // let downloadUrl = [];
+      // downloadUrl = await uploadImage(
+      //   this.state.source,
+      //   this.state.productName + count++,
+      // );
+      //this.setState({downloadUrls: downloadUrl});
+      //console.log(this.state.downloadUrls);
+      this.props.CreateProductAction(
+        // this.state.downloadUrls,
+        this.state.productName,
+        this.state.gender,
+        this.state.category,
+        this.state.brand,
+        this.state.price,
+        this.state.quantity,
+        this.state.description,
+        this.state.size,
+        //  {...this.state},
+      );
+    }
   }
 
   removeImage(index) {
@@ -207,9 +220,7 @@ class CreateNewItem extends Component {
                 }}
                 value={this.state.quantity}
               />
-              <Text style={styles.sideHeadingText}>
-                {CONST.ADD_IMAGES}
-              </Text>
+              <Text style={styles.sideHeadingText}>{CONST.ADD_IMAGES}</Text>
               <View style={styles.listView}>
                 <TouchableOpacity
                   onPress={() => {

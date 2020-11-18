@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ImageBackground,
-  FlatList,
-  SafeAreaView,
-  Image,
-} from 'react-native';
+import {View, Text, FlatList, SafeAreaView, Image} from 'react-native';
 import TextInputFunc from '../../components/TextInputFunc';
 import ButtonFunc from '../../components/ButtonFunc';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -20,7 +12,6 @@ class ViewProduct extends Component {
   componentDidMount() {
     this.props.getListAction();
     console.warn(this.props.items);
-    
   }
   constructor(props) {
     super(props);
@@ -88,17 +79,13 @@ class ViewProduct extends Component {
                   <Image
                     style={styles.flexFull}
                     source={{
-                      uri:
-                       item.imgUrl
+                      uri: item.imgUrl,
                     }}
                   />
                 </View>
                 <View style={styles.itemSubView}>
                   <View style={styles.flexFull}>
-                    <Text
-                      style={styles.itemHeadText}>
-                      {item.name}
-                    </Text>
+                    <Text style={styles.itemHeadText}>{item.name}</Text>
                     <Text style={styles.itemText}>{item.description}</Text>
                     <Text style={styles.itemText}>{item.brand}</Text>
                   </View>
@@ -127,6 +114,5 @@ const mapDispatchToProps = (dispatch, nextProps) => {
     },
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewProduct);

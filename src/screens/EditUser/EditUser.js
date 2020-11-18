@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   KeyboardAvoidingView,
@@ -18,36 +17,32 @@ import {updateUser, getUserData} from '../../actions/CommonAction';
 class EditUser extends Component {
   constructor(props) {
     super(props);
-   let { ID, contact, email, name}= props.userData;
-    contact= String(contact);
+    let {ID, contact, email, name} = props.userData;
+    contact = String(contact);
     this.state = {
-        id : ID,
-        name: name,
-        contact: contact, 
-        email: email,
+      id: ID,
+      name: name,
+      contact: contact,
+      email: email,
     };
   }
 
- 
   async setData() {
-   this.props.UpdateUserAction(this.state.id,
-                                this.state.name,
-                                this.state.contact,
-                                this.state.email,
-                                );
+    this.props.UpdateUserAction(
+      this.state.id,
+      this.state.name,
+      this.state.contact,
+      this.state.email,
+    );
     this.props.getUserDataAction(this.state.id);
- this.props.navigation.pop();
+    this.props.navigation.pop();
   }
 
- 
   render() {
-   
     return (
-        <SafeAreaView style={styles.safeView}>
+      <SafeAreaView style={styles.safeView}>
         <Header centerText="MiniZon" />
-        <ScrollView
-          bounces={false}
-          >
+        <ScrollView bounces={false}>
           <KeyboardAvoidingView style={styles.view} behavior="position">
             <Text style={styles.text}>Update User</Text>
             <View style={styles.subView}>
@@ -76,11 +71,11 @@ class EditUser extends Component {
                 onChange={(changedText) => {
                   this.setState({contact: changedText});
                 }}
-                kType= 'numeric'
+                kType="numeric"
                 value={this.state.contact}
               />
               <ButtonFunc
-                text= "Update User"
+                text="Update User"
                 wid="60%"
                 fontsize={16}
                 onButtonPress={() => {
@@ -97,35 +92,19 @@ class EditUser extends Component {
 const mapStateToProps = (state) => {
   const {CommonReducer} = state;
   return {
-        userData : CommonReducer.userData,
+    userData: CommonReducer.userData,
   };
 };
 
 const mapDispatchToProps = (dispatch, nextProps) => {
   return {
-    UpdateUserAction: (
-      id,
-      name,
-      contact,
-      email,
-    ) => {
-      dispatch(
-        updateUser(
-          id,
-          name,
-          contact,
-          email,
-
-        ),
-      );
+    UpdateUserAction: (id, name, contact, email) => {
+      dispatch(updateUser(id, name, contact, email));
     },
     getUserDataAction: (id) => {
-        dispatch(getUserData(id));
-      },
+      dispatch(getUserData(id));
+    },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(EditUser);
+export default connect(mapStateToProps, mapDispatchToProps)(EditUser);

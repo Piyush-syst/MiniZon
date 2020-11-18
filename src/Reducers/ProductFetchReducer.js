@@ -1,8 +1,8 @@
 import * as CONST from '../utils/Constants/StringConstants';
 const initialState = {
   mensWearData: [],
-  womensWearData:[],
-  itemData:[],
+  womensWearData: [],
+  itemData: [],
   loaderStatus: false,
 };
 
@@ -13,16 +13,15 @@ export default function (state = initialState, action) {
         ...state,
 
         mensWearData: action.payload.mensWear,
-        womensWearData:action.payload.womensWear,
+        womensWearData: action.payload.womensWear,
       };
     case CONST.GOT_ALL_ITEMS:
       return {
         ...state,
 
         itemData: action.payload.items,
-        
       };
-      
+
     default:
       return state;
   }

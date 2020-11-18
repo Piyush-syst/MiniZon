@@ -25,14 +25,24 @@ import styles from './styles';
 class UpdateSingleProduct extends Component {
   constructor(props) {
     super(props);
-    const {ID ,name, gender, category, brand, description, price, quantity, size} = props.route.params.product;
+    const {
+      ID,
+      name,
+      gender,
+      category,
+      brand,
+      description,
+      price,
+      quantity,
+      size,
+    } = props.route.params.product;
     this.state = {
       productName: name,
       source: [],
       downloadUrls: [],
       uri: '',
       gender: gender,
-      category: category ,
+      category: category,
       brand: brand,
       description: description,
       price: price,
@@ -50,7 +60,7 @@ class UpdateSingleProduct extends Component {
   }
   async setData() {
     const pattern = /^\d+$/;
-    isPriceValid = pattern.test(this.state.price) ;
+    isPriceValid = pattern.test(this.state.price);
     isQuantityValid = pattern.test(this.state.quantity);
     if (this.state.productName == '' || this.state.productName == ' ') {
       alert('Name must be filled out');
@@ -60,23 +70,38 @@ class UpdateSingleProduct extends Component {
       alert('Price must be filled out');
     } else if (this.state.quantity == '' || this.state.quantity == ' ') {
       alert('Quantity must be filled out');
-    } else if (this.state.gender == '' || this.state.gender == ' ' || this.state.gender == 'Gender') {
+    } else if (
+      this.state.gender == '' ||
+      this.state.gender == ' ' ||
+      this.state.gender == 'Gender'
+    ) {
       alert('Gender must be selected');
-     } 
-     else if (this.state.size == '' || this.state.size == ' '|| this.state.size == 'Sizes') {
+    } else if (
+      this.state.size == '' ||
+      this.state.size == ' ' ||
+      this.state.size == 'Sizes'
+    ) {
       alert('Size must be selected');
-     } else if (this.state.category == '' || this.state.category == ' '|| this.state.category == 'Category') {
+    } else if (
+      this.state.category == '' ||
+      this.state.category == ' ' ||
+      this.state.category == 'Category'
+    ) {
       alert('Category must be selected');
-     } else if (this.state.brand == '' || this.state.brand == ' '|| this.state.gender == 'Brand') {
+    } else if (
+      this.state.brand == '' ||
+      this.state.brand == ' ' ||
+      this.state.gender == 'Brand'
+    ) {
       alert('Brand must be selected');
-     } else if (!isPriceValid) {
+    } else if (!isPriceValid) {
       alert('Please enter valid Price');
-      } else if (!isQuantityValid) {
-        alert('Enter a valid Quantity');
-      }else{
+    } else if (!isQuantityValid) {
+      alert('Enter a valid Quantity');
+    } else {
       this.props.UpdateProductAction(
-       // this.state.downloadUrls,
-       this.state.id,
+        // this.state.downloadUrls,
+        this.state.id,
         this.state.productName,
         this.state.gender,
         this.state.category,
@@ -88,7 +113,7 @@ class UpdateSingleProduct extends Component {
         //{...this.state},
       );
       this.props.navigation.pop();
-   }
+    }
   }
 
   removeImage(index) {
@@ -111,7 +136,6 @@ class UpdateSingleProduct extends Component {
   };
 
   render() {
-   
     return (
       <SafeAreaView style={styles.safeView}>
         <Header centerText="MiniZon" />
@@ -132,7 +156,7 @@ class UpdateSingleProduct extends Component {
                 }}
                 value={this.state.productName}
               />
-             
+
               <View style={styles.flexRow}>
                 <Dropdown
                   optionList={['Gender', 'Male', 'Female']}
@@ -141,7 +165,6 @@ class UpdateSingleProduct extends Component {
                   onClickDropDown={(value) => {
                     this.setState({gender: value});
                   }}
-                  
                 />
                 <Dropdown
                   optionList={
@@ -184,7 +207,7 @@ class UpdateSingleProduct extends Component {
                 onChange={(changedText) => {
                   this.setState({price: changedText});
                 }}
-                kType= 'numeric'
+                kType="numeric"
                 value={this.state.price}
               />
               <Dropdown
@@ -204,12 +227,10 @@ class UpdateSingleProduct extends Component {
                 onChange={(changedText) => {
                   this.setState({quantity: changedText});
                 }}
-                kType= 'numeric'
+                kType="numeric"
                 value={this.state.quantity}
               />
-              <Text style={styles.pickerText}>
-                {CONST.ADD_IMAGES}
-              </Text>
+              <Text style={styles.pickerText}>{CONST.ADD_IMAGES}</Text>
               <View style={styles.imagePickerView}>
                 <TouchableOpacity
                   onPress={() => {
@@ -249,7 +270,7 @@ class UpdateSingleProduct extends Component {
                 wid="60%"
                 fontsize={16}
                 onButtonPress={() => {
-                  console.warn("clicked");
+                  console.warn('clicked');
                   this.setData();
                 }}
               />

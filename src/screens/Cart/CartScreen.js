@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   FlatList,
@@ -36,30 +35,24 @@ class CartScreen extends Component {
       this.removeItem(index);
     }
   };
-  componentDidUpdate(prevProps)
-  {  
-    if(prevProps.items.length!=this.props.items.length)
-      {
-        this.setState({items: this.props.items });
-      }
+  componentDidUpdate(prevProps) {
+    if (prevProps.items.length != this.props.items.length) {
+      this.setState({items: this.props.items});
+    }
   }
   removeItem(index) {
     this.props.cartItemRemoveAction(this.state.items, index);
   }
   render() {
-   
     return (
       <SafeAreaView style={styles.safeView}>
         <Header centerText={CONST.HEADER_TEXT} />
         <View style={styles.view}>
           <FlatList /*numColumns={2}*/
-          
-            data={this.state.items}           
+            data={this.state.items}
             renderItem={({item, index}) => (
-
               <>
-                <View
-                  style={styles.viewList}>
+                <View style={styles.viewList}>
                   <Image
                     style={styles.itemImage}
                     source={{
@@ -67,34 +60,28 @@ class CartScreen extends Component {
                     }}
                   />
 
-                  <View style={styles.itemSubView}>                    
-                      <Text
-                        style={styles.itemHeadText}>
-                        {item.items.name}
-                      </Text>
-                      <Text numberOfLines={2} style={styles.itemDescriptionText}>
-                        {item.items.description}
-                      </Text>
-                      <Text style={styles.itemText}>{item.items.brand}</Text>
-                      <Text style={styles.itemText}>
-                        Quantity:{item.quantity}
-                      </Text>
-                      <Text style={styles.itemText}>{item.items.price} Rs</Text>                 
+                  <View style={styles.itemSubView}>
+                    <Text style={styles.itemHeadText}>{item.items.name}</Text>
+                    <Text numberOfLines={2} style={styles.itemDescriptionText}>
+                      {item.items.description}
+                    </Text>
+                    <Text style={styles.itemText}>{item.items.brand}</Text>
+                    <Text style={styles.itemText}>
+                      Quantity:{item.quantity}
+                    </Text>
+                    <Text style={styles.itemText}>{item.items.price} Rs</Text>
                   </View>
                   <View style={styles.flexFull}>
-                    <View
-                      style={styles.itemButtonView}>
+                    <View style={styles.itemButtonView}>
                       <ButtonFunc
                         text={'-'}
                         wid="45%"
                         fontsize={18}
                         onButtonPress={() => {
                           this.DecreamentItem(index);
-                          
                         }}
                       />
-                      <Text
-                        style={styles.itemQuantityText}>
+                      <Text style={styles.itemQuantityText}>
                         {item.quantity}
                       </Text>
                       <ButtonFunc
@@ -107,13 +94,13 @@ class CartScreen extends Component {
                       />
                     </View>
                     <ButtonFunc
-                        text={'Remove Item'}
-                        wid="100%"
-                        fontsize={16}
-                        onButtonPress={() => {
-                          this.removeItem(index);
-                        }}
-                      />
+                      text={'Remove Item'}
+                      wid="100%"
+                      fontsize={16}
+                      onButtonPress={() => {
+                        this.removeItem(index);
+                      }}
+                    />
                   </View>
                 </View>
               </>
@@ -121,16 +108,16 @@ class CartScreen extends Component {
             keyExtractor={(item, index) => index}
           />
           <View style={styles.buttonView}>
-          <ButtonFunc
-            text={CONST.BUTTON_TEXT_CHECKOUT}
-            wid="70%"
-            fontsize={14}
-            onButtonPress={() => {
-              this.props.navigation.navigate('CheckOut', {
-                items: this.state.items,
-              });
-            }}
-          />
+            <ButtonFunc
+              text={CONST.BUTTON_TEXT_CHECKOUT}
+              wid="70%"
+              fontsize={14}
+              onButtonPress={() => {
+                this.props.navigation.navigate('CheckOut', {
+                  items: this.state.items,
+                });
+              }}
+            />
           </View>
         </View>
       </SafeAreaView>

@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
         cartData: action.payload.items,
         numberOfItems: action.payload.count,
       };
-      
+
     case CONST.CART_REMOVE_SUCCESS:
       return {
         ...state,

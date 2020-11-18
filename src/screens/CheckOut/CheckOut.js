@@ -23,9 +23,7 @@ class CheckOut extends Component {
   }
   componentDidMount() {
     let total = 0;
-    console.warn(this.state.product);
     this.state.product.forEach((element) => {
-      console.warn(element);
       if (element.quantity == 0) {
         total = total + element.items.price * 1;
       } else {
@@ -47,8 +45,7 @@ class CheckOut extends Component {
             data={this.state.product}
             renderItem={({item, index}) => (
               <>
-                <View
-                  style={styles.itemView}>
+                <View style={styles.itemView}>
                   <Image
                     style={styles.itemImage}
                     source={{
@@ -58,10 +55,7 @@ class CheckOut extends Component {
 
                   <View style={styles.itemSubView}>
                     <View style={styles.flexFull}>
-                      <Text
-                        style={styles.itemHeadText}>
-                        {item.items.name}
-                      </Text>
+                      <Text style={styles.itemHeadText}>{item.items.name}</Text>
                       <Text style={styles.itemText}>
                         {item.items.description}
                       </Text>
@@ -77,8 +71,7 @@ class CheckOut extends Component {
             )}
             keyExtractor={(item, index) => index}
           />
-          <View
-            style={styles.priceBarView}>
+          <View style={styles.priceBarView}>
             <Text style={styles.priceBarText}>Total:</Text>
             <Text style={styles.priceBarText}>{this.state.amount} Rs.</Text>
           </View>
