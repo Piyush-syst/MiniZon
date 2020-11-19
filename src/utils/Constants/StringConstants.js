@@ -71,3 +71,6 @@ export const USER_DATA_UPDATED = 'User data updated';
 export const BUTTON_TEXT_ADD = 'Add Address';
 export const TEXT_ADDRESS = 'Address';
 export const LABEL_PLACEHOLDER_ADDRESS = 'Please Enter Your Address';
+//Screen Constatnts
+export const SCREEN_HEIGHT = 667;
+export const SCREEN_WIDTH = 375;

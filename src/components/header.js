@@ -57,16 +57,22 @@ export default function Header(props) {
             onPress={() => {
               navProp.navigate('Cart');
             }}>
-            <Text
+            <View
               style={{
-                fontSize: 14,
+                backgroundColor: 'red',
                 zIndex: 1,
                 position: 'absolute',
                 right: 0,
                 top: 0,
+                borderRadius: 100,
               }}>
-              {itemsCount ? itemsCount : 0}
-            </Text>
+              <Text
+                style={{
+                  fontSize: 14,
+                }}>
+                {itemsCount ? itemsCount : 0}
+              </Text>
+            </View>
             <Image
               style={{height: 30, width: 30}}
               source={CONST.CART_ICON_IMAGE}

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-
-export default styles = StyleSheet.create({
+import scale from '../../utils/Scale/scale';
+const styles = StyleSheet.create({
   safeView: {
     flex: 1,
     backgroundColor: 'skyblue',
@@ -44,7 +44,7 @@ export default styles = StyleSheet.create({
     fontSize: 16,
   },
   flexFull: {
-    flex: 1,
+    width: scale(120),
   },
   itemButtonView: {
     flexDirection: 'row',
@@ -60,3 +60,4 @@ export default styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+export default styles;

@@ -11,7 +11,6 @@ import * as CONST from '../../utils/Constants/StringConstants';
 class ViewProduct extends Component {
   componentDidMount() {
     this.props.getListAction();
-    console.warn(this.props.items);
   }
   constructor(props) {
     super(props);

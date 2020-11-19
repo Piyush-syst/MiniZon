@@ -11,9 +11,11 @@ export function fetchProduct() {
       .then((querySnapshot) => {
         querySnapshot.forEach((documentSnapshot) => {
           item = documentSnapshot.data();
-          if(item.gender == 'Male')
-          {mensWear.push(item);}
-          else{womensWear.push(item);}
+          if (item.gender == 'Male') {
+            mensWear.push(item);
+          } else {
+            womensWear.push(item);
+          }
         });
 
         dispatch({
@@ -32,9 +34,9 @@ export function fetchAllProducts() {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((documentSnapshot) => {
-          item = documentSnapshot.data();        
-          item['ID']=documentSnapshot.id; 
-          items.push(item); 
+          item = documentSnapshot.data();
+          item.ID = documentSnapshot.id;
+          items.push(item);
         });
         dispatch({
           type: CONST.GOT_ALL_ITEMS,

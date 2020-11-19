@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import {PersistGate} from 'redux-persist/integration/react';
 import React, {Component} from 'react';
 import {Image} from 'react-native';
 import 'react-native-gesture-handler';
@@ -32,15 +32,16 @@ import UpdateSingleProduct from './src/screens/UpdateSingleProduct/UpdateSingleP
 import DeleteProduct from './src/screens/DeleteProduct/DeleteProduct';
 import ViewProduct from './src/screens/ViewProducts/ViewProducts';
 import Product from './src/screens/Product/Product';
-import EditUser from './src/screens/EditUser/EditUser'
+import EditUser from './src/screens/EditUser/EditUser';
 import FinalScreen from './src/screens/FinalScreen/FinalScreen';
+import {getStore, getPersistor} from './src/stores/ConfigureStore';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      store: ConfigureStore(() => {
-        console.log('Store persisted !');
-      }),
+      // store: ConfigureStore(() => {
+      //   console.log('Store persisted !');
+      // }),
     };
   }
   componentDidMount() {
@@ -50,7 +51,8 @@ class App extends Component {
   render() {
     const Stack = createStackNavigator();
     const Tab = createBottomTabNavigator();
-
+    const myStore = getStore();
+    const myPersistor = getPersistor();
     const HomeTabNavigator = () => {
       return (
         <Tab.Navigator
@@ -89,7 +91,9 @@ class App extends Component {
 
     const MainStack = () => {
       return (
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+          initialRouteName="MensWear">
           <Stack.Screen name="MensWear" component={HomeTabNavigator} />
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
           <Stack.Screen name="Cart" component={CartScreen} />
@@ -102,7 +106,9 @@ class App extends Component {
     };
     const AuthStack = () => {
       return (
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+          initialRouteName="Login">
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen
@@ -114,31 +120,37 @@ class App extends Component {
     };
     const AdminPanel = () => {
       return (
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+          initialRouteName="AdminPanel">
           <Stack.Screen name="AdminPanel" component={AdminControlPanel} />
           <Stack.Screen name="CreateNewItem" component={CreateNewItem} />
           <Stack.Screen name="UpdateProduct" component={UpdateProduct} />
           <Stack.Screen name="DeleteProduct" component={DeleteProduct} />
           <Stack.Screen name="ViewProduct" component={ViewProduct} />
-          <Stack.Screen name="UpdateSingleProduct" component={UpdateSingleProduct} />
+          <Stack.Screen
+            name="UpdateSingleProduct"
+            component={UpdateSingleProduct}
+          />
         </Stack.Navigator>
       );
     };
     return (
       <NavigationContainer>
-        <Provider store={this.state.store}>
-          <Stack.Navigator
-            screenOptions={{headerShown: false}}
-            initialRouteName="AuthStack">
-            <Stack.Screen name="AuthStack" component={AuthStack} />
-            <Stack.Screen name="MainStack" component={MainStack} />
-            <Stack.Screen name="AdminPanel" component={AdminPanel} />
-          </Stack.Navigator>
-          <Loader />
+        <Provider store={myStore}>
+          <PersistGate loading={null} persistor={myPersistor}>
+            <Stack.Navigator
+              screenOptions={{headerShown: false}}
+              initialRouteName="AuthStack">
+              <Stack.Screen name="AuthStack" component={AuthStack} />
+              <Stack.Screen name="MainStack" component={MainStack} />
+              <Stack.Screen name="AdminPanel" component={AdminPanel} />
+            </Stack.Navigator>
+            <Loader />
+          </PersistGate>
         </Provider>
       </NavigationContainer>
     );
   }
 }
-
 export default App;

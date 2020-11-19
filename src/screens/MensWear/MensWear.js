@@ -16,7 +16,6 @@ class MensWear extends Component {
   componentDidMount() {
     this.props.getListAction();
   }
-
   render() {
     return (
       <SafeAreaView style={styles.safeView}>

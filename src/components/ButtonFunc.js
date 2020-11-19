@@ -7,7 +7,6 @@ export default function ButtonFunc(props) {
       activeOpacity={0.8}
       style={{
         backgroundColor: 'powderblue',
-        paddingHorizontal: 20,
         width: wid,
         marginTop: 20,
         borderRadius: 20,

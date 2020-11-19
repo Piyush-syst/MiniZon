@@ -16,6 +16,7 @@ class LoginScreen extends Component {
         alert('No internet connection');
       }
     });
+
     this.state = {
       username: '',
       password: '',
@@ -24,15 +25,12 @@ class LoginScreen extends Component {
     };
   }
   componentDidMount() {
-    if (this.props.adminLoginStatus) {
-      this.props.navigation.reset({
-        index: 0,
-        routes: [{name: 'AdminPanel'}],
-      });
-    } else if (this.props.status) {
-      this.props.navigation.reset({
-        index: 0,
-        routes: [{name: 'MainStack'}],
+    if (this.props.status) {
+      this.props.navigation.addListener('focus', () => {
+        this.props.navigation.reset({
+          index: 0,
+          routes: [{name: 'MainStack'}],
+        });
       });
     }
   }

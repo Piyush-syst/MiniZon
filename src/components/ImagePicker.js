@@ -1,6 +1,4 @@
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
-import * as CONST from '../utils/Constants/StringConstants';
 import ImagePicker from 'react-native-image-picker';
 
 // More info on all the options is below in the API Reference... just some common use cases shown here

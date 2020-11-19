@@ -5,9 +5,7 @@ import {Platform} from 'react-native';
 export default async function uploadImage(path, id, response) {
   let downLoadUrls = [];
   try {
-    console.warn('path', path);
     let url;
-    //  console.warn('upload URI', uploadUri);
     for (var i = 0; i < path.length; i++) {
       id = id + new Date().getTime();
       url = await ImageUpload(path[i].img, id);
@@ -18,7 +16,6 @@ export default async function uploadImage(path, id, response) {
   } catch (error) {
     console.warn(error);
   }
-
 }
 async function ImageUpload(fileLocation, id) {
   return new Promise(async function (resolve, reject) {

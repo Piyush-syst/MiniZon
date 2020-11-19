@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  SafeAreaView,
-  Image,
-} from 'react-native';
+import {View, Text, FlatList, SafeAreaView, Image} from 'react-native';
 import styles from './styles';
 import ButtonFunc from '../../components/ButtonFunc';
 import Header from '../../components/header';
@@ -36,7 +30,7 @@ class CartScreen extends Component {
     }
   };
   componentDidUpdate(prevProps) {
-    if (prevProps.items.length != this.props.items.length) {
+    if (prevProps.items.length !== this.props.items.length) {
       this.setState({items: this.props.items});
     }
   }
@@ -75,7 +69,7 @@ class CartScreen extends Component {
                     <View style={styles.itemButtonView}>
                       <ButtonFunc
                         text={'-'}
-                        wid="45%"
+                        wid={45}
                         fontsize={18}
                         onButtonPress={() => {
                           this.DecreamentItem(index);
@@ -86,7 +80,7 @@ class CartScreen extends Component {
                       </Text>
                       <ButtonFunc
                         text={'+'}
-                        wid="45%"
+                        wid={45}
                         fontsize={18}
                         onButtonPress={() => {
                           this.IncreamentItem(index);
@@ -94,7 +88,7 @@ class CartScreen extends Component {
                       />
                     </View>
                     <ButtonFunc
-                      text={'Remove Item'}
+                      text={'Remove'}
                       wid="100%"
                       fontsize={16}
                       onButtonPress={() => {
