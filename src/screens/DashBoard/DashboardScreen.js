@@ -7,6 +7,19 @@ import {connect} from 'react-redux';
 import {logout} from '../../actions/CommonAction';
 import styles from './styles';
 class DashboardScreen extends Component {
+  getAuth() {
+    this.props.logoutAction();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      if (!this.props.status) {
+        this.props.navigation.reset({
+          index: 0,
+          routes: [{name: 'AuthStack'}],
+        });
+      }
+    }
+  }
   render() {
     return (
       <SafeAreaView style={styles.safeView}>
@@ -41,11 +54,7 @@ class DashboardScreen extends Component {
               wid="70%"
               fontsize={14}
               onButtonPress={() => {
-                this.props.logoutAction();
-                this.props.navigation.reset({
-                  index: 0,
-                  routes: [{name: 'AuthStack'}],
-                });
+                this.getAuth();
               }}
             />
           </View>
@@ -58,6 +67,7 @@ const mapStateToProps = (state) => {
   const {CommonReducer} = state;
   return {
     user: CommonReducer.userData,
+    status: CommonReducer.loginStatus,
   };
 };
 

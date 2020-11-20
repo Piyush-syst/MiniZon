@@ -38,8 +38,8 @@ export function CartUpdateAction(item, quantity, items) {
 export function CartItemRemoveAction(items, index) {
   return (dispatch) => {
     let count = items.length;
-    count = items.length;
     items.splice(index, 1);
+    count = items.length;
     dispatch({
       type: CONST.CART_REMOVE_SUCCESS,
       payload: {items: items, count: count},

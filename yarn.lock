@@ -1157,23 +1157,23 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/netinfo/-/netinfo-5.9.7.tgz"
   "version" "5.9.7"
 
-"@react-native-firebase/app@8.4.7":
-  "integrity" "sha512-jN788Q17aMOHc49wKc74RC3iZNhFoS+yTZhMBHFVyytf64uK3ofYAk3hjvukkylUTKF0Ni/L+04M0IDv8kStKg=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/app/-/app-8.4.7.tgz"
-  "version" "8.4.7"
+"@react-native-firebase/app@8.4.6":
+  "integrity" "sha512-4eZR133QuScvGs4IQQd6qMvQ5E1mtydVTy3DtuBCeiIqtvN8ZxBYoSMgcUmYGS4VafbS2nPh85g4e3BlaIJ2XA=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/app/-/app-8.4.6.tgz"
+  "version" "8.4.6"
   dependencies:
     "opencollective-postinstall" "^2.0.1"
     "superstruct" "^0.6.2"
 
-"@react-native-firebase/firestore@^7.9.1":
-  "integrity" "sha512-uibVaDa8v7fX5Jw59+FPt9auXrB96LGu3csfS5ybMtq52gkRWDvHbK8OMNLDwoyh8klACzioe+3O+WXY5z7m3Q=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-7.9.1.tgz"
-  "version" "7.9.1"
+"@react-native-firebase/auth@^9.3.1":
+  "integrity" "sha512-TtCEwyO5+ZRvmlKMLz54qFshIWaDT9U162CjQX0mzybmogYKRM9UoB+mFnZLh7rKZQQgvVzzMfF+h2DUgN+9xQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-9.3.1.tgz"
+  "version" "9.3.1"
 
-"@react-native-firebase/storage@^7.4.11":
-  "integrity" "sha512-2YnfIHdIuf+PrK3Jlsewqw3Sqe/HPxmTBQY5l5ow7qVbVLIgARMxeV2EQf4XtxbUTFe1WkeDQEplHnPRjJiHjA=="
-  "resolved" "https://registry.npmjs.org/@react-native-firebase/storage/-/storage-7.4.11.tgz"
-  "version" "7.4.11"
+"@react-native-firebase/firestore@7.8.7":
+  "integrity" "sha512-UuQHvzadFszs3cphDsUZ/t7XGo0wW48+SVVHe20HBz42bU6EiN7YgmdBTqwEI8P2go+0Uj9LLLDayhND7JSSyQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-7.8.7.tgz"
+  "version" "7.8.7"
 
 "@react-navigation/bottom-tabs@^5.10.1":
   "integrity" "sha512-A33hcWi1pn9sTVkALWth49jZAc/OMtjeiv3z7N0DqENEDnxoDaekLXRcCUIu97V6McALj/37JNoqken3uvHVWQ=="
@@ -5888,7 +5888,7 @@
   "resolved" "https://registry.npmjs.org/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz"
   "version" "3.2.0"
 
-"react-native@>=0.59", "react-native@0.63.3":
+"react-native@*", "react-native@>=0.59", "react-native@0.63.3":
   "integrity" "sha512-71wq13uNo5W8QVQnFlnzZ3AD+XgUBYGhpsxysQFW/hJ8GAt/J5o+Bvhy81FXichp6IBDJDh/JgfHH2gNji8dFA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.63.3.tgz"
   "version" "0.63.3"
@@ -5947,7 +5947,7 @@
     "react-is" "^16.8.6"
     "scheduler" "^0.19.1"
 
-"react@^16.8", "react@16.13.1":
+"react@*", "react@^16.8", "react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.13.1.tgz"
   "version" "16.13.1"
